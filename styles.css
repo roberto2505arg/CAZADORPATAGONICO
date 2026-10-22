@@ -1,10 +1,10 @@
 /* ==========================================================
-   CAZADOR PATAGÓNICO - ESTILOS DEFINITIVOS Y CORREGIDOS
+   CAZADOR PATAGÓNICO - ESTILOS ESTÁNDAR Y RESPONSIVE DEFINITIVOS
    ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rajdhani:wght@500;600;700;900&display=swap');
 
-/* RESET GLOBAL Y FORZADO DE TEMA OSCURO (EVITA FONDO BLANCO) */
+/* RESET GLOBAL Y TEMA OSCURO FORZADO */
 html, body {
     background-color: #0d0e10 !important;
     color: #e6edf3 !important;
@@ -22,7 +22,7 @@ body {
 }
 
 /* ==========================================================
-   1. INTRO DE VIDEO A PANTALLA COMPLETA Y TRANSICIÓN SUAVE
+   1. OVERLAY DE INTRO
    ========================================================== */
 .cp-intro-overlay {
     position: fixed !important;
@@ -53,18 +53,16 @@ body {
 .cp-intro-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ocupa el 100% de la pantalla sin franjas ni descuadres */
+    object-fit: cover;
     background-color: #000000;
 }
 
-/* Transición cinematográfica cuando se activa el desvanecimiento */
 .cp-fade-out {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
 }
 
-/* Botón flotante para ingresar */
 .cp-skip-btn {
     position: absolute;
     bottom: 40px;
@@ -175,7 +173,7 @@ body {
 }
 
 /* ==========================================================
-   3. CONTENEDORES PRINCIPALES Y PORTADA
+   3. CONTENEDORES Y BANNER
    ========================================================== */
 .cp-wrapper {
     background-color: #0d0e10 !important;
@@ -228,14 +226,14 @@ body {
 }
 
 /* ==========================================================
-   4. CATÁLOGO / PARRILLA Y TARJETAS
+   4. ESTRUCTURA GRID PARA PRODUCTOS (3 COLUMNAS EN PC)
    ========================================================== */
 .cp-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    width: 100%;
-    margin-bottom: 40px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+    width: 100% !important;
+    margin-bottom: 40px !important;
 }
 
 .cp-card {
@@ -366,15 +364,21 @@ body {
 }
 
 /* ==========================================================
-   6. REGLAS ESPECÍFICAS PARA CELULARES
+   6. VISTA MÓVIL Y TABLETS
    ========================================================== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .cp-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 650px) {
     body {
         padding-top: 110px;
     }
 
     .cp-intro-video {
-        object-fit: contain; /* En celular el video se encuadra sin deformaciones ni cortes */
+        object-fit: contain;
     }
 
     .cp-skip-btn {
@@ -424,8 +428,8 @@ body {
     }
 
     .cp-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
     }
 
     .cp-footer-content {
