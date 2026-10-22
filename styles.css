@@ -18,16 +18,16 @@ body {
     font-family: 'Montserrat', Arial, sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
-    padding-top: 70px; /* Espacio para la navbar fija */
+    padding-top: 75px; /* Espacio superior para la navbar fija */
 }
 
-/* 3. BARRA DE NAVEGACIÓN SUPERIOR HORIZONTAL */
+/* 3. BARRA DE NAVEGACIÓN SUPERIOR */
 .cp-navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    min-height: 70px;
     background-color: #141619;
     border-bottom: 1px solid #2e343d;
     z-index: 1000;
@@ -37,11 +37,12 @@ body {
 .cp-nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    height: 100%;
+    min-height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    flex-wrap: wrap;
 }
 
 .cp-nav-logo {
@@ -54,19 +55,23 @@ body {
     font-size: 20px;
     font-weight: 900;
     letter-spacing: 1px;
+    flex-shrink: 0;
 }
 
 .cp-nav-logo-img {
-    height: 42px;
-    width: auto;
-    border-radius: 4px;
-    border: 1px solid #2e343d;
+    height: 45px;
+    width: 45px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #d4a359;
+    background-color: #0d0e10;
+    padding: 2px;
 }
 
 .cp-nav-links {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
 }
 
 .cp-nav-item {
@@ -76,11 +81,12 @@ body {
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    white-space: nowrap;
 }
 
 .cp-nav-item:hover {
@@ -264,96 +270,7 @@ body {
     color: #0d0e10;
 }
 
-/* 9. PÁGINA EN CONSTRUCCIÓN */
-.cp-construction-wrapper {
-    min-height: calc(100vh - 180px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cp-construction-box {
-    background-color: #1b1e23;
-    border: 1px solid #2e343d;
-    border-radius: 12px;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    max-width: 800px;
-}
-
-.cp-construction-logos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-}
-
-.cp-construction-img-shield {
-    height: 110px;
-    width: auto;
-    border-radius: 8px;
-}
-
-.cp-construction-img-puma {
-    height: 110px;
-    width: auto;
-    background-color: #ffffff;
-    padding: 8px;
-    border-radius: 8px;
-}
-
-.cp-construction-badge {
-    display: inline-block;
-    background-color: #d4a359;
-    color: #0d0e10;
-    font-family: 'Rajdhani', Arial, sans-serif;
-    font-weight: 800;
-    padding: 6px 16px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-.cp-construction-title {
-    font-family: 'Rajdhani', Arial, sans-serif;
-    font-size: 34px;
-    font-weight: 900;
-    color: #ffffff;
-    margin-bottom: 15px;
-}
-
-.cp-construction-text {
-    color: #94a3b8;
-    max-width: 550px;
-    margin: 0 auto 30px auto;
-    font-size: 15px;
-}
-
-.cp-btn-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #141619;
-    color: #ffffff;
-    border: 1px solid #d4a359;
-    padding: 12px 25px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-family: 'Rajdhani', Arial, sans-serif;
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-}
-
-.cp-btn-back:hover {
-    background-color: #d4a359;
-    color: #0d0e10;
-}
-
-/* 10. PIE DE PÁGINA (FOOTER) */
+/* 9. PIE DE PÁGINA (FOOTER) */
 .cp-footer {
     background-color: #141619;
     border-top: 1px solid #2e343d;
@@ -407,22 +324,80 @@ body {
     margin-top: 10px;
 }
 
-/* 11. ADAPTABILIDAD MÓVIL */
-@media (max-width: 768px) {
+/* ==========================================================
+   10. ADAPTABILIDAD MÓVIL Y TABLETS (RESPONSIVE OPTIMIZADO)
+   ========================================================== */
+@media (max-width: 850px) {
     body {
-        padding-top: 110px;
+        padding-top: 115px; /* Espacio compensado para la barra superior móvil */
+    }
+
+    .cp-navbar {
+        height: auto;
+        padding: 10px 0;
     }
 
     .cp-nav-container {
         flex-direction: column;
         justify-content: center;
-        padding: 10px;
-        gap: 8px;
+        align-items: center;
+        padding: 5px 15px;
+        gap: 10px;
     }
 
+    .cp-nav-logo span {
+        font-size: 18px;
+    }
+
+    /* Permite desplazamiento horizontal fluido en celulares para los enlaces */
     .cp-nav-links {
-        gap: 12px;
-        font-size: 12px;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        justify-content: flex-start;
+        gap: 15px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Oculta barra de scroll en Firefox */
+    }
+
+    .cp-nav-links::-webkit-scrollbar {
+        display: none; /* Oculta barra de scroll en Chrome/Safari */
+    }
+
+    .cp-nav-item {
+        font-size: 13px;
+        padding: 4px 8px;
+        background-color: #1b1e23;
+        border: 1px solid #2e343d;
+        border-radius: 4px;
+    }
+
+    .cp-nav-cart {
+        background-color: #d4a359;
+    }
+
+    .cp-wrapper {
+        padding: 10px;
+    }
+
+    .cp-header {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    .cp-desc {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .cp-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .cp-card-img,
+    .cp-card-img-wrapper {
+        height: 190px;
     }
 
     .cp-footer-content {
