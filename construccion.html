@@ -7,35 +7,168 @@
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Ajustes específicos para equilibrar la pantalla de construcción */
+        .cp-construction-wrapper {
+            min-height: calc(100vh - 140px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+        }
+
+        .cp-construction-box {
+            background-color: #1b1e23;
+            border: 1px solid #2e343d;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 650px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Contenedor controlado para los logos */
+        .cp-construction-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cp-construction-img-shield {
+            max-height: 120px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+        }
+
+        .cp-construction-img-puma {
+            max-height: 110px;
+            width: auto;
+            object-fit: contain;
+            background-color: transparent;
+            /* Aplica un efecto de mezcla para disimular el fondo blanco en tema oscuro */
+            mix-blend-mode: multiply;
+            border-radius: 8px;
+        }
+
+        .cp-construction-badge {
+            display: inline-block;
+            background-color: #d4a359;
+            color: #0d0e10;
+            font-family: 'Rajdhani', Arial, sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cp-construction-title {
+            font-family: 'Rajdhani', Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .cp-construction-text {
+            color: #94a3b8;
+            max-width: 500px;
+            margin: 0 auto 25px auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cp-btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #141619;
+            color: #ffffff;
+            border: 1px solid #d4a359;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'Rajdhani', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .cp-btn-back:hover {
+            background-color: #d4a359;
+            color: #0d0e10;
+        }
+
+        /* Ajustes específicos para pantalla móvil */
+        @media (max-width: 600px) {
+            .cp-construction-box {
+                padding: 20px 15px;
+            }
+
+            .cp-construction-logos {
+                gap: 15px;
+                margin-bottom: 18px;
+            }
+
+            .cp-construction-img-shield {
+                max-height: 85px;
+            }
+
+            .cp-construction-img-puma {
+                max-height: 80px;
+            }
+
+            .cp-construction-title {
+                font-size: 22px;
+            }
+
+            .cp-construction-text {
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR HORIZONTAL -->
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
             <a href="index.html" class="cp-nav-logo">
-			 <img src="imagen/logo.png" alt="Logo CP" class="cp-nav-logo-img">
-                 <span>CAZADOR PATAGÓNICO</span>
+                <img src="imagen/logo.png" alt="Logo CP" class="cp-nav-logo-img">
+                <span>CAZADOR PATAGÓNICO</span>
             </a>
             
             <div class="cp-nav-links">
-                <a href="index.html#catalogo" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> Productos</a>
-                <a href="index.html" class="cp-nav-item"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="index.html#catalogo" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
+                <a href="index.html" class="cp-nav-item"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
             </div>
         </div>
     </nav>
 
+    <!-- CONTENIDO PÁGINA EN CONSTRUCCIÓN -->
     <div class="cp-wrapper cp-construction-wrapper">
-        <div class="cp-container cp-construction-box">
+        <div class="cp-construction-box">
             
-            <!-- MARCAS Y LOGOS -->
+            <!-- MARCAS Y LOGOS PROPORCIONADOS -->
             <div class="cp-construction-logos">
                 <img src="imagen/logo.png" alt="Escudo CP Cazador Patagónico" class="cp-construction-img-shield">
                 <img src="imagen/lOGO cAZADOR.jpg" alt="Logo Puma Cazador Patagónico" class="cp-construction-img-puma">
             </div>
 
             <div class="cp-construction-badge">
-                <i class="fa-solid fa-triangle-exclamation"></i> SECCIÓN EN DESARROLLO
+                <i class="fa-solid fa-triangle-exclamation"></i> Sección en Desarrollo
             </div>
 
             <h1 class="cp-construction-title">ESTAMOS FORJANDO ALGO GRANDE</h1>
