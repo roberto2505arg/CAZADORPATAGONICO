@@ -1,38 +1,53 @@
-// Manejo de la Intro de Video para Cazador Patagónico
+// Manejo de la Intro con Transición Progresiva (Fade Out)
 
 document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('cp-intro-overlay');
     const introVideo = document.getElementById('cp-intro-video');
     const skipBtn = document.getElementById('cp-skip-btn');
 
-    // Función para cerrar la intro de forma suave con un desvanecimiento (fade out)
-    function cerrarIntro() {
-        if (introOverlay) {
-            introOverlay.classList.add('cp-fade-out');
-            setTimeout(() => {
-                introOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Habilita el desplazamiento de la página
-            }, 800); // Coincide con el tiempo de animación CSS
-        }
+    let desvaneciendo = false;
+
+    function iniciarDesvanecimiento() {
+        if (desvaneciendo || !introOverlay) return;
+        desvaneciendo = true;
+
+        // Inicia el desvanecimiento CSS (transparencia)
+        introOverlay.classList.add('cp-fade-out');
+
+        // Permite interactuar con la página que está debajo mientras se vuelve transparente
+        introOverlay.style.pointerEvents = 'none';
+        document.body.style.overflow = 'auto';
+
+        // Una vez terminada la animación (1.8 segundos), oculta completamente el contenedor
+        setTimeout(() => {
+            introOverlay.style.display = 'none';
+        }, 1800);
     }
 
-    // Bloquea el scroll de la página mientras el video se reproduce
+    // Bloquea el desplazamiento del cuerpo mientras la intro es opaca
     if (introOverlay) {
         document.body.style.overflow = 'hidden';
     }
 
-    // Al finalizar el video automáticamente, se oculta la intro
     if (introVideo) {
-        introVideo.addEventListener('ended', cerrarIntro);
-        
-        // Manejo por si el navegador bloquea la reproducción automática
+        // Detecta cuando faltan 1.5 segundos para que termine el video para iniciar la transición suave
+        introVideo.addEventListener('timeupdate', () => {
+            if (introVideo.duration && (introVideo.duration - introVideo.currentTime <= 1.5)) {
+                iniciarDesvanecimiento();
+            }
+        });
+
+        // Al finalizar por completo el video
+        introVideo.addEventListener('ended', iniciarDesvanecimiento);
+
+        // Reproducción automática silenciada
         introVideo.play().catch(error => {
             console.log("Autoplay bloqueado por el navegador:", error);
         });
     }
 
-    // Al hacer clic en el botón "Ingresar a la Tienda", se cierra la intro inmediatamente
+    // Botón para saltar / ingresar manualmente
     if (skipBtn) {
-        skipBtn.addEventListener('click', cerrarIntro);
+        skipBtn.addEventListener('click', iniciarDesvanecimiento);
     }
 });
