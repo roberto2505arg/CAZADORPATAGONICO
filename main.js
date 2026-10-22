@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('cp-fade-out');
         setTimeout(() => {
             overlay.style.display = 'none';
-            if (video) { video.pause(); }
+            if (video) video.pause();
         }, 1400);
     }
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             video.playsInline = true;
             await video.play();
         } catch (e) {
-            console.log('Autoplay bloqueado, esperando interacción');
+            console.log('Autoplay bloqueado en celular, esperando toque');
             if (skipBtn) {
                 skipBtn.innerHTML = '<span>TOCÁ PARA INGRESAR <i class="fa-solid fa-play"></i></span>';
                 skipBtn.style.background = '#d4a359';
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         video.addEventListener('ended', unlockPage);
         video.addEventListener('error', () => {
-            console.error('Error cargando video/intro.mp4 - verifica /video/ en GitHub');
+            console.error('Error cargando video. Verifica video/intro.mp4 y video/intro-mobile.mp4');
             unlockPage();
         });
     }
@@ -75,6 +75,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Seguridad: libera a los 10s aunque el video falle
     setTimeout(() => { unlockPage(); }, 10000);
 });
