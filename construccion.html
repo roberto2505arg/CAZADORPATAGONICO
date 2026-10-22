@@ -9,39 +9,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Ajustes específicos para equilibrar la pantalla de construcción */
+        /* Estructura centrada para la pantalla de construcción */
+        body {
+            background-color: #0d0e10;
+            margin: 0;
+            padding-top: 80px;
+        }
+
         .cp-construction-wrapper {
-            min-height: calc(100vh - 140px);
+            min-height: calc(100vh - 180px);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 15px;
+            padding: 30px 20px;
         }
 
         .cp-construction-box {
             background-color: #1b1e23;
             border: 1px solid #2e343d;
             border-radius: 12px;
-            padding: 30px 20px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-width: 650px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            max-width: 600px; /* Limita el ancho del contenedor en PC */
             width: 100%;
             margin: 0 auto;
         }
 
-        /* Contenedor controlado para los logos */
+        /* Control estricto de tamaño para los logos */
         .cp-construction-logos {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 25px;
             flex-wrap: wrap;
         }
 
         .cp-construction-img-shield {
-            max-height: 120px;
+            max-height: 120px; /* Tamaño controlado para que no se expanda en PC */
             width: auto;
             object-fit: contain;
             border-radius: 8px;
@@ -52,10 +58,9 @@
             max-height: 110px;
             width: auto;
             object-fit: contain;
-            background-color: transparent;
-            /* Aplica un efecto de mezcla para disimular el fondo blanco en tema oscuro */
-            mix-blend-mode: multiply;
             border-radius: 8px;
+            /* Suaviza el fondo si es blanco */
+            mix-blend-mode: multiply;
         }
 
         .cp-construction-badge {
@@ -83,7 +88,7 @@
 
         .cp-construction-text {
             color: #94a3b8;
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto 25px auto;
             font-size: 14px;
             line-height: 1.5;
@@ -111,19 +116,18 @@
             color: #0d0e10;
         }
 
-        /* Ajustes específicos para pantalla móvil */
+        /* Ajustes para pantallas pequeñas (Celulares) */
         @media (max-width: 600px) {
-            .cp-construction-box {
-                padding: 20px 15px;
+            body {
+                padding-top: 110px;
             }
 
-            .cp-construction-logos {
-                gap: 15px;
-                margin-bottom: 18px;
+            .cp-construction-box {
+                padding: 25px 15px;
             }
 
             .cp-construction-img-shield {
-                max-height: 85px;
+                max-height: 90px;
             }
 
             .cp-construction-img-puma {
@@ -132,10 +136,6 @@
 
             .cp-construction-title {
                 font-size: 22px;
-            }
-
-            .cp-construction-text {
-                font-size: 13px;
             }
         }
     </style>
@@ -161,7 +161,7 @@
     <div class="cp-wrapper cp-construction-wrapper">
         <div class="cp-construction-box">
             
-            <!-- MARCAS Y LOGOS PROPORCIONADOS -->
+            <!-- LOGOS CON TAMAÑO CONTROLADO -->
             <div class="cp-construction-logos">
                 <img src="imagen/logo.png" alt="Escudo CP Cazador Patagónico" class="cp-construction-img-shield">
                 <img src="imagen/lOGO cAZADOR.jpg" alt="Logo Puma Cazador Patagónico" class="cp-construction-img-puma">
