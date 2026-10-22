@@ -1,4 +1,4 @@
-// Manejo de la Intro con Transición Progresiva (Fade Out)
+// Manejo de la Intro con Transición Progresiva Limpia
 
 document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('cp-intro-overlay');
@@ -11,42 +11,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (desvaneciendo || !introOverlay) return;
         desvaneciendo = true;
 
-        // Inicia el desvanecimiento CSS (transparencia)
-        introOverlay.classList.add('cp-fade-out');
-
-        // Permite interactuar con la página que está debajo mientras se vuelve transparente
-        introOverlay.style.pointerEvents = 'none';
+        // Desbloquea el desplazamiento antes de que comience el fade
         document.body.style.overflow = 'auto';
 
-        // Una vez terminada la animación (1.8 segundos), oculta completamente el contenedor
+        // Aplica la clase que inicia el desvanecimiento CSS suave (opacity: 0)
+        introOverlay.classList.add('cp-fade-out');
+
+        // Al finalizar la transición de 1.5 segundos, oculta el contenedor
         setTimeout(() => {
             introOverlay.style.display = 'none';
-        }, 1800);
+        }, 1500);
     }
 
-    // Bloquea el desplazamiento del cuerpo mientras la intro es opaca
+    // Asegura el bloqueo de scroll mientras el video está activo
     if (introOverlay) {
         document.body.style.overflow = 'hidden';
     }
 
     if (introVideo) {
-        // Detecta cuando faltan 1.5 segundos para que termine el video para iniciar la transición suave
+        // Inicia el desvanecimiento 1.2 segundos antes de que termine el video
         introVideo.addEventListener('timeupdate', () => {
-            if (introVideo.duration && (introVideo.duration - introVideo.currentTime <= 1.5)) {
+            if (introVideo.duration && (introVideo.duration - introVideo.currentTime <= 1.2)) {
                 iniciarDesvanecimiento();
             }
         });
 
-        // Al finalizar por completo el video
         introVideo.addEventListener('ended', iniciarDesvanecimiento);
 
-        // Reproducción automática silenciada
         introVideo.play().catch(error => {
-            console.log("Autoplay bloqueado por el navegador:", error);
+            console.log("Autoplay con sonido bloqueado, reproduciendo...", error);
         });
     }
 
-    // Botón para saltar / ingresar manualmente
     if (skipBtn) {
         skipBtn.addEventListener('click', iniciarDesvanecimiento);
     }
