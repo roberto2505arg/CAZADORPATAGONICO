@@ -11,6 +11,21 @@
 </head>
 <body>
 
+    <!-- PANTALLA DE INTRO / VIDEO DE BIENVENIDA (OPCIÓN 2) -->
+    <div id="cp-intro-overlay" class="cp-intro-overlay">
+        <div class="cp-intro-container">
+            <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline>
+                <source src="video/intro.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
+            </video>
+            
+            <!-- Botón para omitir o entrar directamente -->
+            <button id="cp-skip-btn" class="cp-skip-btn">
+                <span>INGRESAR A LA TIENDA</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- BARRA DE NAVEGACIÓN SUPERIOR RESPONSIVE -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
@@ -118,7 +133,7 @@
         <div class="cp-container cp-footer-content">
             <div class="cp-footer-brand">
                 <p class="cp-footer-title">CAZADOR PATAGÓNICO</p>
-                <p class="cp-footer-sub">Zapala - Neuquén, Patagonia Argentina</p>
+                <p class="cp-footer-sub">Zapala, Patagonia Argentina</p>
             </div>
             
             <div class="cp-footer-social">
@@ -133,5 +148,7 @@
         </div>
     </footer>
 
+    <!-- SCRIPT PRINCIPAL DE INTERACCIÓN Y VIDEO -->
+    <script src="scripts/main.js"></script>
 </body>
 </html>

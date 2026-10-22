@@ -16,10 +16,81 @@ body {
     font-family: 'Montserrat', Arial, sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
-    padding-top: 75px; /* Espacio para barra de navegación superior */
+    padding-top: 75px;
 }
 
-/* 1. BARRA DE NAVEGACIÓN COMPACTA Y FIJA */
+/* ==========================================================
+   1. INTRO / PANTALLA DE BIENVENIDA CON VIDEO
+   ========================================================== */
+.cp-intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 9999; /* Se superpone a todo el sitio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.cp-intro-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cp-intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubre toda la pantalla manteniendo la proporción */
+}
+
+/* Botón flotante para ingresar / omitir intro */
+.cp-skip-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgba(20, 22, 25, 0.85);
+    color: #d4a359;
+    border: 2px solid #d4a359;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: 'Rajdhani', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+}
+
+.cp-skip-btn:hover {
+    background-color: #d4a359;
+    color: #0d0e10;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(212, 163, 89, 0.4);
+}
+
+/* Animación para desvanecer suavemente la intro */
+.cp-fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ==========================================================
+   2. BARRA DE NAVEGACIÓN SUPERIOR
+   ========================================================== */
 .cp-navbar {
     position: fixed;
     top: 0;
@@ -97,7 +168,9 @@ body {
     color: #0d0e10;
 }
 
-/* 2. CONTENEDORES Y ESTRUCTURA GENERAL */
+/* ==========================================================
+   3. CONTENEDORES Y PORTADA
+   ========================================================== */
 .cp-wrapper {
     background-color: #0d0e10;
     color: #e6edf3;
@@ -148,7 +221,9 @@ body {
     margin: 10px auto;
 }
 
-/* 3. PARRILLA Y TARJETAS */
+/* ==========================================================
+   4. PARRILLA Y TARJETAS
+   ========================================================== */
 .cp-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -234,7 +309,9 @@ body {
     background-color: #cbf30c;
 }
 
-/* 4. FOOTER */
+/* ==========================================================
+   5. FOOTER
+   ========================================================== */
 .cp-footer {
     background-color: #141619;
     border-top: 1px solid #2e343d;
@@ -283,11 +360,25 @@ body {
 }
 
 /* ==========================================================
-   5. REGLAS ESPECÍFICAS PARA CELULARES (RESPONSIVE PERFECTO)
+   6. RESPONSIVE CELULARES Y TABLETS
    ========================================================== */
 @media (max-width: 768px) {
     body {
-        padding-top: 110px; /* Compensación para la barra de navegación móvil */
+        padding-top: 110px;
+    }
+
+    .cp-skip-btn {
+        bottom: 25px;
+        right: 50%;
+        transform: translateX(50%); /* Centrado en celulares */
+        width: 85%;
+        justify-content: center;
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+
+    .cp-skip-btn:hover {
+        transform: translateX(50%) translateY(-2px);
     }
 
     .cp-nav-container {
@@ -305,7 +396,6 @@ body {
         width: 32px;
     }
 
-    /* Rediseño de los botones del menú en móvil: 3 por fila */
     .cp-nav-links {
         width: 100%;
         display: grid;
@@ -323,39 +413,13 @@ body {
         text-align: center;
     }
 
-    .cp-nav-item i {
-        font-size: 12px;
-    }
-
     .cp-wrapper {
         padding: 10px;
     }
 
-    .cp-header {
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .cp-desc {
-        font-size: 13px;
-    }
-
     .cp-grid {
-        grid-template-columns: 1fr; /* Una tarjeta por fila en vertical */
+        grid-template-columns: 1fr;
         gap: 16px;
-    }
-
-    .cp-card-img,
-    .cp-card-img-wrapper {
-        height: 180px;
-    }
-
-    .cp-card-body {
-        padding: 15px;
-    }
-
-    .cp-card-title {
-        font-size: 20px;
     }
 
     .cp-footer-content {
