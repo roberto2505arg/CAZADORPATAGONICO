@@ -2,10 +2,8 @@
    CAZADOR PATAGÓNICO - HOJA DE ESTILOS PRINCIPAL (styles.css)
    ========================================================== */
 
-/* 1. FUENTES E IMPORTACIONES */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rajdhani:wght@500;600;700;900&display=swap');
 
-/* 2. RESET Y ESTILOS GENERALES */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,16 +16,15 @@ body {
     font-family: 'Montserrat', Arial, sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
-    padding-top: 75px; /* Espacio superior para la navbar fija */
+    padding-top: 75px; /* Espacio para barra de navegación superior */
 }
 
-/* 3. BARRA DE NAVEGACIÓN SUPERIOR */
+/* 1. BARRA DE NAVEGACIÓN COMPACTA Y FIJA */
 .cp-navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 70px;
     background-color: #141619;
     border-bottom: 1px solid #2e343d;
     z-index: 1000;
@@ -37,30 +34,27 @@ body {
 .cp-nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    min-height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    flex-wrap: wrap;
+    padding: 10px 20px;
 }
 
 .cp-nav-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     color: #ffffff;
     font-family: 'Rajdhani', Arial, sans-serif;
     font-size: 20px;
     font-weight: 900;
     letter-spacing: 1px;
-    flex-shrink: 0;
 }
 
 .cp-nav-logo-img {
-    height: 45px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
     object-fit: contain;
     border-radius: 6px;
     border: 1px solid #d4a359;
@@ -71,22 +65,20 @@ body {
 .cp-nav-links {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 15px;
 }
 
 .cp-nav-item {
     color: #cbd5e1;
     text-decoration: none;
     font-family: 'Rajdhani', Arial, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
     gap: 6px;
-    white-space: nowrap;
 }
 
 .cp-nav-item:hover {
@@ -96,7 +88,7 @@ body {
 .cp-nav-cart {
     background-color: #d4a359;
     color: #0d0e10;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 4px;
 }
 
@@ -105,7 +97,7 @@ body {
     color: #0d0e10;
 }
 
-/* 4. CONTENEDORES PRINCIPALES */
+/* 2. CONTENEDORES Y ESTRUCTURA GENERAL */
 .cp-wrapper {
     background-color: #0d0e10;
     color: #e6edf3;
@@ -119,7 +111,6 @@ body {
     width: 100%;
 }
 
-/* 5. ENCABEZADO Y BANNER HERO */
 .cp-header {
     text-align: center;
     padding: 20px;
@@ -128,15 +119,13 @@ body {
     border-radius: 12px;
     margin-bottom: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    width: 100%;
 }
 
 .cp-banner-container {
     width: 100%;
-    max-width: 100%;
     overflow: hidden;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border: 1px solid #2e343d;
     display: flex;
     justify-content: center;
@@ -147,21 +136,19 @@ body {
 .cp-banner-img {
     width: 100%;
     height: auto;
-    max-height: 80vh;
     display: block;
     object-fit: contain;
 }
 
 .cp-desc {
-    font-size: 16px;
+    font-size: 15px;
     color: #cbd5e1;
     line-height: 1.6;
     max-width: 850px;
-    margin: 15px auto 10px auto;
-    padding: 0 10px;
+    margin: 10px auto;
 }
 
-/* 6. PARRILLA / GRID DE PRODUCTOS */
+/* 3. PARRILLA Y TARJETAS */
 .cp-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -170,13 +157,12 @@ body {
     margin-bottom: 40px;
 }
 
-/* 7. TARJETAS DE CATEGORÍA */
 .cp-card {
     background-color: #1b1e23;
     border: 1px solid #2e343d;
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
@@ -185,7 +171,6 @@ body {
 .cp-card:hover {
     transform: translateY(-5px);
     border-color: #d4a359;
-    box-shadow: 0 8px 25px rgba(212, 163, 89, 0.2);
 }
 
 .cp-card-img {
@@ -193,13 +178,6 @@ body {
     width: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(90%);
-    transition: transform 0.5s ease, filter 0.3s ease;
-}
-
-.cp-card:hover .cp-card-img {
-    transform: scale(1.05);
-    filter: brightness(100%);
 }
 
 .cp-card-img-wrapper {
@@ -209,21 +187,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .cp-card-img-fit {
     height: 100% !important;
     width: 100% !important;
     object-fit: contain !important;
-    background-color: #0d0e10;
-    filter: brightness(95%);
-    transition: transform 0.5s ease, filter 0.3s ease;
-}
-
-.cp-card:hover .cp-card-img-fit {
-    transform: scale(1.03);
-    filter: brightness(100%);
 }
 
 .cp-card-body {
@@ -235,42 +204,37 @@ body {
 
 .cp-card-title {
     font-family: 'Rajdhani', Arial, sans-serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #ffffff;
     text-transform: uppercase;
-    margin: 0 0 10px 0;
+    margin-bottom: 8px;
 }
 
 .cp-card-text {
-    font-size: 14px;
+    font-size: 13px;
     color: #94a3b8;
     line-height: 1.5;
-    margin: 0;
 }
 
-/* 8. BADGES TÁCTICOS */
 .cp-badge {
     align-self: flex-start;
-    display: inline-block;
     background-color: #d4a359;
     color: #0d0e10;
     font-family: 'Rajdhani', Arial, sans-serif;
     font-weight: 700;
-    font-size: 12px;
-    padding: 4px 10px;
+    font-size: 11px;
+    padding: 3px 8px;
     border-radius: 4px;
     text-transform: uppercase;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
 .cp-badge-neon {
     background-color: #cbf30c;
-    color: #0d0e10;
 }
 
-/* 9. PIE DE PÁGINA (FOOTER) */
+/* 4. FOOTER */
 .cp-footer {
     background-color: #141619;
     border-top: 1px solid #2e343d;
@@ -283,7 +247,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
 }
 
 .cp-footer-title {
@@ -291,7 +255,6 @@ body {
     font-weight: 900;
     font-size: 18px;
     color: #ffffff;
-    letter-spacing: 1px;
 }
 
 .cp-footer-sub {
@@ -307,15 +270,10 @@ body {
 .cp-footer-social a {
     color: #d4a359;
     font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-.cp-footer-social a:hover {
-    color: #cbf30c;
 }
 
 .cp-footer-copy {
-    font-size: 12px;
+    font-size: 11px;
     color: #64748b;
     width: 100%;
     text-align: center;
@@ -325,55 +283,48 @@ body {
 }
 
 /* ==========================================================
-   10. ADAPTABILIDAD MÓVIL Y TABLETS (RESPONSIVE OPTIMIZADO)
+   5. REGLAS ESPECÍFICAS PARA CELULARES (RESPONSIVE PERFECTO)
    ========================================================== */
-@media (max-width: 850px) {
+@media (max-width: 768px) {
     body {
-        padding-top: 115px; /* Espacio compensado para la barra superior móvil */
-    }
-
-    .cp-navbar {
-        height: auto;
-        padding: 10px 0;
+        padding-top: 110px; /* Compensación para la barra de navegación móvil */
     }
 
     .cp-nav-container {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 5px 15px;
-        gap: 10px;
+        padding: 8px 12px;
+        gap: 8px;
     }
 
-    .cp-nav-logo span {
-        font-size: 18px;
+    .cp-nav-logo {
+        font-size: 17px;
     }
 
-    /* Permite desplazamiento horizontal fluido en celulares para los enlaces */
+    .cp-nav-logo-img {
+        height: 32px;
+        width: 32px;
+    }
+
+    /* Rediseño de los botones del menú en móvil: 3 por fila */
     .cp-nav-links {
         width: 100%;
-        overflow-x: auto;
-        padding-bottom: 6px;
-        justify-content: flex-start;
-        gap: 15px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Oculta barra de scroll en Firefox */
-    }
-
-    .cp-nav-links::-webkit-scrollbar {
-        display: none; /* Oculta barra de scroll en Chrome/Safari */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
     }
 
     .cp-nav-item {
-        font-size: 13px;
-        padding: 4px 8px;
+        font-size: 11px;
+        justify-content: center;
         background-color: #1b1e23;
         border: 1px solid #2e343d;
+        padding: 6px 4px;
         border-radius: 4px;
+        text-align: center;
     }
 
-    .cp-nav-cart {
-        background-color: #d4a359;
+    .cp-nav-item i {
+        font-size: 12px;
     }
 
     .cp-wrapper {
@@ -381,23 +332,30 @@ body {
     }
 
     .cp-header {
-        padding: 12px;
+        padding: 10px;
         margin-bottom: 20px;
     }
 
     .cp-desc {
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 13px;
     }
 
     .cp-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
+        grid-template-columns: 1fr; /* Una tarjeta por fila en vertical */
+        gap: 16px;
     }
 
     .cp-card-img,
     .cp-card-img-wrapper {
-        height: 190px;
+        height: 180px;
+    }
+
+    .cp-card-body {
+        padding: 15px;
+    }
+
+    .cp-card-title {
+        font-size: 20px;
     }
 
     .cp-footer-content {
