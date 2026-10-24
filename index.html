@@ -18,8 +18,21 @@
     <!-- OVERLAY INTRO DE VIDEO -->
     <div id="cp-intro-overlay" class="cp-intro-overlay">
         <div class="cp-intro-container">
-            <!-- La fuente se asigna limpiamente por JS según el dispositivo -->
-            <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline preload="auto">
+            <!--
+                El src se asigna dinámicamente desde main.js según el dispositivo:
+                - Celular  -> video/intro_celu.mp4
+                - PC       -> video/intro.mp4
+                Los atributos playsinline / webkit-playsinline son clave para iOS.
+            -->
+            <video
+                id="cp-intro-video"
+                class="cp-intro-video"
+                autoplay
+                muted
+                playsinline
+                webkit-playsinline
+                preload="auto"
+            >
                 Tu navegador no soporta video HTML5.
             </video>
             
