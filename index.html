@@ -15,14 +15,11 @@
 </head>
 <body>
 
-    <!-- OVERLAY INTRO DE VIDEO (MÓVIL Y PC SEPARADOS POR MEDIA QUERY) -->
+    <!-- OVERLAY INTRO DE VIDEO -->
     <div id="cp-intro-overlay" class="cp-intro-overlay">
         <div class="cp-intro-container">
+            <!-- La fuente se asigna limpiamente por JS según el dispositivo -->
             <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline preload="auto">
-                <!-- Video vertical para celulares -->
-                <source src="video/intro_celu.mp4" type="video/mp4" media="(max-width: 650px)">
-                <!-- Video horizontal para PC y Tablets -->
-                <source src="video/intro.mp4" type="video/mp4">
                 Tu navegador no soporta video HTML5.
             </video>
             
@@ -161,6 +158,7 @@
         </div>
     </footer>
 
+    <!-- SCRIPT DE INTRO -->
     <script src="main.js"></script>
 </body>
 </html>

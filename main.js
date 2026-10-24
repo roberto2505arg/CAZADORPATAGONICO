@@ -4,6 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const skipBtn = document.getElementById('cp-skip-btn');
     let fading = false;
 
+    // FORZAR EL VIDEO ADECUADO SEGÚN EL DISPOSITIVO
+    function initIntroVideo() {
+        if (!video) return;
+        
+        // Si el ancho es de celular (menor o igual a 768px), usa el video vertical exclusivo
+        const isMobile = window.innerWidth <= 768;
+        const videoSrc = isMobile ? 'video/intro_celu.mp4' : 'video/intro.mp4';
+
+        // Inyecta la fuente de manera directa y limpia
+        video.innerHTML = `<source src="${videoSrc}" type="video/mp4">`;
+        video.load();
+    }
+
+    initIntroVideo();
+
     function unlockPage() {
         if (fading || !overlay) return;
         fading = true;
