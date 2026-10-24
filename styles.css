@@ -184,7 +184,7 @@ body {
 }
 
 /* ==========================================================
-   3. HERO BANNER Y HOTSPOTS RE-ALINEADOS EXACTAMENTE
+   3. HERO BANNER Y HOTSPOTS CORREGIDOS EN COMPUTADORA
    ========================================================== */
 .cp-wrapper {
     background: #0d0e10 !important;
@@ -234,7 +234,7 @@ body {
     display: block;
 }
 
-/* HOTSPOTS TRANSPARENTES CON POSICIONAMIENTO CORREGIDO PARA COMPUTADORA */
+/* HOTSPOTS TRANSPARENTES CON CENTRADO EXACTO EN MONITOR DE COMPUTADORA */
 .cp-banner-hotspot {
     position: absolute;
     display: block;
@@ -247,20 +247,20 @@ body {
     transition: all 0.3s ease;
 }
 
-/* "VER LÍNEA TÁCTICA" - Centrado vertical exacto en PC */
+/* "VER LÍNEA TÁCTICA" - Centrado milimétrico en PC */
 .cp-hotspot-tactica {
-    top: 45%;
-    left: 2.3%;
+    top: 48%;
+    left: 2.2%;
     width: 9.8%;
-    height: 7.8%;
+    height: 7.2%;
 }
 
-/* "VER LÍNEA DEPORTIVA" - Centrado vertical exacto en PC */
+/* "VER LÍNEA DEPORTIVA" - Centrado milimétrico en PC */
 .cp-hotspot-deportiva {
-    top: 45%;
-    right: 2.3%;
+    top: 48%;
+    right: 2.2%;
     width: 9.8%;
-    height: 7.8%;
+    height: 7.2%;
 }
 
 .cp-hotspot-tactica:hover {
@@ -465,9 +465,9 @@ body {
 
     .cp-hotspot-tactica,
     .cp-hotspot-deportiva {
-        width: 16%;
-        height: 14%;
-        top: 42%;
+        width: 18%;
+        height: 15%;
+        top: 45%;
     }
 
     .cp-nav-container {
