@@ -1,5 +1,5 @@
 /* ==========================================================
-   CAZADOR PATAGÓNICO - HOJA DE ESTILOS FINAL DEFINITIVA
+   CAZADOR PATAGÓNICO - HOJA DE ESTILOS DEFINITIVA
    ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rajdhani:wght@500;600;700;900&display=swap');
@@ -13,7 +13,6 @@ img, video {
     display: block;
 }
 
-/* BASE NEGRA ABSOLUTA PARA PREVENIR PARPADEO INICIAL */
 html, body {
     background-color: #000000 !important;
     color: #e6edf3 !important;
@@ -104,7 +103,7 @@ body {
 }
 
 /* ==========================================================
-   2. BARRA DE NAVEGACIÓN SUPERIOR
+   2. NAVBAR
    ========================================================== */
 .cp-navbar {
     position: fixed;
@@ -185,7 +184,7 @@ body {
 }
 
 /* ==========================================================
-   3. WRAPPER Y HERO BANNER CON HOTSPOTS TRANSPARENTES Y PRECISOS
+   3. HERO BANNER Y HOTSPOTS RE-ALINEADOS EXACTAMENTE
    ========================================================== */
 .cp-wrapper {
     background: #0d0e10 !important;
@@ -235,7 +234,7 @@ body {
     display: block;
 }
 
-/* HOTSPOTS 100% TRANSPARENTES POR DEFECTO Y ALINEACIÓN EXACTA */
+/* HOTSPOTS TRANSPARENTES CON POSICIONAMIENTO CORREGIDO PARA COMPUTADORA */
 .cp-banner-hotspot {
     position: absolute;
     display: block;
@@ -243,40 +242,37 @@ body {
     cursor: pointer;
     text-decoration: none;
     border-radius: 4px;
-    background: transparent; /* Totalmente transparente */
-    border: 1px solid transparent; /* Sin borde previo */
+    background: transparent;
+    border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
-/* Posición exacta sobre "VER LÍNEA TÁCTICA" */
+/* "VER LÍNEA TÁCTICA" - Centrado vertical exacto en PC */
 .cp-hotspot-tactica {
-    top: 38%;
-    left: 2.2%;
-    width: 10%;
-    height: 9%;
+    top: 45%;
+    left: 2.3%;
+    width: 9.8%;
+    height: 7.8%;
 }
 
-/* Posición exacta sobre "VER LÍNEA DEPORTIVA" */
+/* "VER LÍNEA DEPORTIVA" - Centrado vertical exacto en PC */
 .cp-hotspot-deportiva {
-    top: 38%;
-    right: 2.2%;
-    width: 10%;
-    height: 9%;
+    top: 45%;
+    right: 2.3%;
+    width: 9.8%;
+    height: 7.8%;
 }
 
-/* EFECTO DE RESPLANDOR AL PASAR EL MOUSE O TOCAR */
 .cp-hotspot-tactica:hover {
     background: rgba(212, 163, 89, 0.2);
     border: 1px solid #d4a359;
     box-shadow: 0 0 15px rgba(212, 163, 89, 0.5);
-    transform: scale(1.03);
 }
 
 .cp-hotspot-deportiva:hover {
     background: rgba(203, 243, 12, 0.2);
     border: 1px solid #cbf30c;
     box-shadow: 0 0 15px rgba(203, 243, 12, 0.5);
-    transform: scale(1.03);
 }
 
 .cp-desc {
@@ -289,7 +285,7 @@ body {
 }
 
 /* ==========================================================
-   4. CATÁLOGO / REJILLA DE TARJETAS (3 COLUMNAS EN PC)
+   4. CATÁLOGO / REJILLA
    ========================================================== */
 .cp-grid {
     display: grid !important;
@@ -433,7 +429,7 @@ body {
 }
 
 /* ==========================================================
-   6. RESPONSIVE MÓVIL Y TABLETS
+   6. RESPONSIVE MÓVIL
    ========================================================== */
 @media (max-width: 900px) {
     .cp-grid {
@@ -471,7 +467,7 @@ body {
     .cp-hotspot-deportiva {
         width: 16%;
         height: 14%;
-        top: 36%;
+        top: 42%;
     }
 
     .cp-nav-container {
