@@ -1,5 +1,5 @@
 /* ==========================================================
-   CAZADOR PATAGÓNICO - ESTILOS ESTÁNDAR Y RESPONSIVE DEFINITIVOS
+   CAZADOR PATAGÓNICO - HOJA DE ESTILOS FINAL DEFINITIVA
    ========================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rajdhani:wght@500;600;700;900&display=swap');
@@ -13,8 +13,9 @@ img, video {
     display: block;
 }
 
+/* BASE NEGRA ABSOLUTA PARA PREVENIR PARPADEO INICIAL */
 html, body {
-    background-color: #0d0e10 !important;
+    background-color: #000000 !important;
     color: #e6edf3 !important;
     font-family: 'Montserrat', Arial, sans-serif;
     line-height: 1.5;
@@ -30,7 +31,7 @@ body {
 }
 
 /* ==========================================================
-   1. OVERLAY DE INTRO (PC Y CELULAR)
+   1. OVERLAY DE INTRO
    ========================================================== */
 .cp-intro-overlay {
     position: fixed !important;
@@ -39,8 +40,8 @@ body {
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
-    background-color: #000000 !important;
-    z-index: 999999 !important;
+    background: #000000 !important;
+    z-index: 9999999 !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +57,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    background: #000000;
 }
 
 .cp-intro-video {
@@ -64,7 +65,7 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    background-color: #000000;
+    background: #000000;
 }
 
 .cp-fade-out {
@@ -93,7 +94,7 @@ body {
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
-    z-index: 1000000;
+    z-index: 10000000;
 }
 
 .cp-skip-btn:hover {
@@ -184,10 +185,10 @@ body {
 }
 
 /* ==========================================================
-   3. CONTENEDORES PRINCIPALES Y HERO BANNER INTERACTIVO
+   3. WRAPPER Y HERO BANNER CON HOTSPOTS TRANSPARENTES Y PRECISOS
    ========================================================== */
 .cp-wrapper {
-    background-color: #0d0e10 !important;
+    background: #0d0e10 !important;
     color: #e6edf3;
     padding: 20px;
     width: 100%;
@@ -234,7 +235,7 @@ body {
     display: block;
 }
 
-/* ÁREAS INTERACTIVAS (HOTSPOTS SOBRE BANNER) */
+/* HOTSPOTS 100% TRANSPARENTES POR DEFECTO Y ALINEACIÓN EXACTA */
 .cp-banner-hotspot {
     position: absolute;
     display: block;
@@ -242,49 +243,40 @@ body {
     cursor: pointer;
     text-decoration: none;
     border-radius: 4px;
+    background: transparent; /* Totalmente transparente */
+    border: 1px solid transparent; /* Sin borde previo */
     transition: all 0.3s ease;
 }
 
+/* Posición exacta sobre "VER LÍNEA TÁCTICA" */
 .cp-hotspot-tactica {
-    top: 45%;
+    top: 38%;
     left: 2.2%;
     width: 10%;
-    height: 12%;
+    height: 9%;
 }
 
+/* Posición exacta sobre "VER LÍNEA DEPORTIVA" */
 .cp-hotspot-deportiva {
-    top: 45%;
+    top: 38%;
     right: 2.2%;
     width: 10%;
-    height: 12%;
+    height: 9%;
 }
 
-.cp-banner-hotspot:hover {
-    background: rgba(212, 163, 89, 0.25);
+/* EFECTO DE RESPLANDOR AL PASAR EL MOUSE O TOCAR */
+.cp-hotspot-tactica:hover {
+    background: rgba(212, 163, 89, 0.2);
     border: 1px solid #d4a359;
-    box-shadow: 0 0 15px rgba(212, 163, 89, 0.6);
-    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(212, 163, 89, 0.5);
+    transform: scale(1.03);
 }
 
 .cp-hotspot-deportiva:hover {
     background: rgba(203, 243, 12, 0.2);
     border: 1px solid #cbf30c;
-    box-shadow: 0 0 15px rgba(203, 243, 12, 0.6);
-}
-
-.cp-hotspot-glow {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 4px;
-    border: 1px dashed rgba(212, 163, 89, 0.4);
-    pointer-events: none;
-    animation: cp-pulse 2s infinite;
-}
-
-@keyframes cp-pulse {
-    0% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.3; }
+    box-shadow: 0 0 15px rgba(203, 243, 12, 0.5);
+    transform: scale(1.03);
 }
 
 .cp-desc {
@@ -297,7 +289,7 @@ body {
 }
 
 /* ==========================================================
-   4. CATÁLOGO / PARRILLA EN REJILLA
+   4. CATÁLOGO / REJILLA DE TARJETAS (3 COLUMNAS EN PC)
    ========================================================== */
 .cp-grid {
     display: grid !important;
@@ -441,7 +433,7 @@ body {
 }
 
 /* ==========================================================
-   6. VISTA MÓVIL Y TABLETS (RESPONSIVE OPTIMIZADO)
+   6. RESPONSIVE MÓVIL Y TABLETS
    ========================================================== */
 @media (max-width: 900px) {
     .cp-grid {
@@ -457,7 +449,6 @@ body {
         padding-top: 110px;
     }
 
-    /* Video de celus vertical completo en cover */
     .cp-intro-video {
         object-fit: cover !important;
         object-position: center center !important;
@@ -476,12 +467,11 @@ body {
         font-size: 14px;
     }
 
-    /* Ajuste de hotspots en celulares */
     .cp-hotspot-tactica,
     .cp-hotspot-deportiva {
-        width: 18%;
-        height: 18%;
-        top: 41%;
+        width: 16%;
+        height: 14%;
+        top: 36%;
     }
 
     .cp-nav-container {

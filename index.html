@@ -8,13 +8,17 @@
     <!-- FUENTES E ICONOS DE FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        img, video { max-width: 100%; display: block; }
+    </style>
 </head>
 <body>
 
-    <!-- OVERLAY INTRO DE VIDEO (ADAPTABLE PC Y CELULAR) -->
+    <!-- OVERLAY INTRO DE VIDEO (SIN PARPADEO INICIAL) -->
     <div id="cp-intro-overlay" class="cp-intro-overlay">
         <div class="cp-intro-container">
-            <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline preload="auto" poster="imagen/banner.jfif">
+            <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline preload="auto">
                 <!-- Video vertical para celulares -->
                 <source src="video/intro_celu.mp4" type="video/mp4" media="(max-width: 650px)">
                 <!-- Video horizontal para PC y Tablets -->
@@ -51,20 +55,16 @@
     <div class="cp-wrapper">
         <div class="cp-container">
             
-            <!-- PORTADA / HERO BANNER CON BOTONES INTERACTIVOS -->
+            <!-- PORTADA / HERO BANNER CON BOTONES INTERACTIVOS EXACTOS Y TRANSPARENTES -->
             <header class="cp-header">
                 <div class="cp-banner-container">
                     <img src="imagen/banner.jfif" alt="Cazador Patagónico - Forjados para la Acción" class="cp-banner-img">
                     
-                    <!-- BOTÓN INTERACTIVO IZQUIERDA: VER LÍNEA TÁCTICA -->
-                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-tactica" title="Ver Línea Táctica">
-                        <span class="cp-hotspot-glow"></span>
-                    </a>
+                    <!-- BOTÓN IZQUIERDO: VER LÍNEA TÁCTICA -->
+                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-tactica" title="Ver Línea Táctica"></a>
 
-                    <!-- BOTÓN INTERACTIVO DERECHA: VER LÍNEA DEPORTIVA -->
-                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-deportiva" title="Ver Línea Deportiva">
-                        <span class="cp-hotspot-glow"></span>
-                    </a>
+                    <!-- BOTÓN DERECHO: VER LÍNEA DEPORTIVA -->
+                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-deportiva" title="Ver Línea Deportiva"></a>
                 </div>
 
                 <p class="cp-desc">
@@ -75,7 +75,7 @@
             <!-- CATÁLOGO EN REJILLA (GRID 3 COLUMNAS EN PC) -->
             <main class="cp-grid" id="catalogo">
                 
-                <!-- Tarjeta 1 -->
+                <!-- Tarjeta 1: Bolsos & Mochilas -->
                 <article class="cp-card">
                     <img src="imagen/mochilas.jfif" alt="Bolsos y Mochilas Tácticas" class="cp-card-img">
                     <div class="cp-card-body">
@@ -85,7 +85,7 @@
                     </div>
                 </article>
 
-                <!-- Tarjeta 2 -->
+                <!-- Tarjeta 2: Calzado Táctico -->
                 <article class="cp-card">
                     <img src="imagen/calzado_tactico.jfif" alt="Calzado Táctico" class="cp-card-img">
                     <div class="cp-card-body">
@@ -95,7 +95,7 @@
                     </div>
                 </article>
 
-                <!-- Tarjeta 3 -->
+                <!-- Tarjeta 3: Camping, Caza & Pesca -->
                 <article class="cp-card">
                     <img src="imagen/camping.avif" alt="Camping, Caza y Pesca" class="cp-card-img">
                     <div class="cp-card-body">
@@ -105,7 +105,7 @@
                     </div>
                 </article>
 
-                <!-- Tarjeta 4 -->
+                <!-- Tarjeta 4: Running & Ciclismo -->
                 <article class="cp-card">
                     <div class="cp-card-img-wrapper">
                         <img src="imagen/running_ciclismo.jfif" alt="Running y Ciclismo" class="cp-card-img cp-card-img-fit">
@@ -117,7 +117,7 @@
                     </div>
                 </article>
 
-                <!-- Tarjeta 5 -->
+                <!-- Tarjeta 5: Mascotas & K9 -->
                 <article class="cp-card">
                     <img src="imagen/k9.jfif" alt="Mascotas y Línea K9 Táctica" class="cp-card-img">
                     <div class="cp-card-body">
@@ -127,7 +127,7 @@
                     </div>
                 </article>
 
-                <!-- Tarjeta 6 -->
+                <!-- Tarjeta 6: Táctico Urbano -->
                 <article class="cp-card">
                     <img src="imagen/tactico_urbano.jfif" alt="Táctico Urbano" class="cp-card-img">
                     <div class="cp-card-body">
@@ -161,7 +161,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE INTRO Y CONTROL -->
+    <!-- SCRIPT DE INTRO -->
     <script src="main.js"></script>
 </body>
 </html>
