@@ -7,13 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function unlockPage() {
         if (fading || !overlay) return;
         fading = true;
+
         document.documentElement.style.overflow = 'auto';
         document.body.style.overflow = 'auto';
         document.body.style.overflowX = 'hidden';
+
         overlay.classList.add('cp-fade-out');
+
         setTimeout(() => {
             overlay.style.display = 'none';
-            if (video) video.pause();
+            if (video) {
+                video.pause();
+            }
         }, 1400);
     }
 
@@ -24,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             video.playsInline = true;
             await video.play();
         } catch (e) {
-            console.log('Autoplay bloqueado en celular, esperando toque');
+            console.log('Autoplay restringido por el celular, esperando toque.', e);
             if (skipBtn) {
                 skipBtn.innerHTML = '<span>TOCÁ PARA INGRESAR <i class="fa-solid fa-play"></i></span>';
                 skipBtn.style.background = '#d4a359';
@@ -61,9 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 unlockPage();
             }
         });
+
         video.addEventListener('ended', unlockPage);
+
         video.addEventListener('error', () => {
-            console.error('Error cargando video. Verifica video/intro.mp4 y video/intro-mobile.mp4');
+            console.error('Error cargando el video de la intro.');
             unlockPage();
         });
     }
@@ -75,5 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Respaldo de seguridad a los 10 segundos
     setTimeout(() => { unlockPage(); }, 10000);
 });

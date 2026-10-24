@@ -4,31 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cazador Patagónico | Forjados para la Acción</title>
+    
+    <!-- FUENTES E ICONOS DE FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>*,*::before,*::after{box-sizing:border-box} img,video{max-width:100%;display:block}</style>
 </head>
 <body>
-    <!-- INTRO VIDEO - SOPORTE DESKTOP + MOBILE -->
+
+    <!-- OVERLAY INTRO DE VIDEO (ADAPTABLE PC Y CELULAR) -->
     <div id="cp-intro-overlay" class="cp-intro-overlay">
         <div class="cp-intro-container">
             <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline preload="auto" poster="imagen/banner.jfif">
-                <!-- Si tenés el vertical, se usará en celular -->
-                <source src="video/intro-mobile.mp4" type="video/mp4" media="(max-width: 650px)">
+                <!-- Video vertical para celulares -->
+                <source src="video/intro_celu.mp4" type="video/mp4" media="(max-width: 650px)">
+                <!-- Video horizontal para PC y Tablets -->
                 <source src="video/intro.mp4" type="video/mp4">
                 Tu navegador no soporta video HTML5.
             </video>
+            
             <button id="cp-skip-btn" class="cp-skip-btn">
                 <span>INGRESAR A LA TIENDA</span> <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </div>
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR HORIZONTAL -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
             <a href="index.html" class="cp-nav-logo">
                 <img src="imagen/logo.png" alt="Logo CP" class="cp-nav-logo-img">
                 <span>CAZADOR PATAGÓNICO</span>
             </a>
+            
             <div class="cp-nav-links">
                 <a href="#catalogo" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a>
@@ -39,17 +46,36 @@
             </div>
         </div>
     </nav>
+
+    <!-- CONTENEDOR PRINCIPAL DE LA TIENDA -->
     <div class="cp-wrapper">
         <div class="cp-container">
+            
+            <!-- PORTADA / HERO BANNER CON BOTONES INTERACTIVOS -->
             <header class="cp-header">
                 <div class="cp-banner-container">
                     <img src="imagen/banner.jfif" alt="Cazador Patagónico - Forjados para la Acción" class="cp-banner-img">
+                    
+                    <!-- BOTÓN INTERACTIVO IZQUIERDA: VER LÍNEA TÁCTICA -->
+                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-tactica" title="Ver Línea Táctica">
+                        <span class="cp-hotspot-glow"></span>
+                    </a>
+
+                    <!-- BOTÓN INTERACTIVO DERECHA: VER LÍNEA DEPORTIVA -->
+                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-deportiva" title="Ver Línea Deportiva">
+                        <span class="cp-hotspot-glow"></span>
+                    </a>
                 </div>
+
                 <p class="cp-desc">
                     Nacidos en el rigor del viento y la montaña. Tienda online especializada en indumentaria, equipo y accesorios de alto rendimiento, fuerzas de seguridad, amantes de la caza, pesca, running, ciclismo y estilo táctico urbano.
                 </p>
             </header>
+
+            <!-- CATÁLOGO EN REJILLA (GRID 3 COLUMNAS EN PC) -->
             <main class="cp-grid" id="catalogo">
+                
+                <!-- Tarjeta 1 -->
                 <article class="cp-card">
                     <img src="imagen/mochilas.jfif" alt="Bolsos y Mochilas Tácticas" class="cp-card-img">
                     <div class="cp-card-body">
@@ -58,6 +84,8 @@
                         <p class="cp-card-text">Mochilas tácticas, de asalto, expedición, bolsos estancos y riñoneras para distintos usos extremos y diarios.</p>
                     </div>
                 </article>
+
+                <!-- Tarjeta 2 -->
                 <article class="cp-card">
                     <img src="imagen/calzado_tactico.jfif" alt="Calzado Táctico" class="cp-card-img">
                     <div class="cp-card-body">
@@ -66,6 +94,8 @@
                         <p class="cp-card-text">Borcegos de combate impermeables, zapatillas trail running y calzado de trekking reinforced.</p>
                     </div>
                 </article>
+
+                <!-- Tarjeta 3 -->
                 <article class="cp-card">
                     <img src="imagen/camping.avif" alt="Camping, Caza y Pesca" class="cp-card-img">
                     <div class="cp-card-body">
@@ -74,6 +104,8 @@
                         <p class="cp-card-text">Carpas técnicas, navajas, equipo de orientación, linternas tácticas y accesorios de pesca.</p>
                     </div>
                 </article>
+
+                <!-- Tarjeta 4 -->
                 <article class="cp-card">
                     <div class="cp-card-img-wrapper">
                         <img src="imagen/running_ciclismo.jfif" alt="Running y Ciclismo" class="cp-card-img cp-card-img-fit">
@@ -84,6 +116,8 @@
                         <p class="cp-card-text">Indumentaria térmica de compresión, chalecos de hidratación y accesorios de alto rendimiento.</p>
                     </div>
                 </article>
+
+                <!-- Tarjeta 5 -->
                 <article class="cp-card">
                     <img src="imagen/k9.jfif" alt="Mascotas y Línea K9 Táctica" class="cp-card-img">
                     <div class="cp-card-body">
@@ -92,6 +126,8 @@
                         <p class="cp-card-text">Arneses tácticos con sistema MOLLE, correas deportivas de alta resistencia, bozales de trabajo y accesorios outdoor.</p>
                     </div>
                 </article>
+
+                <!-- Tarjeta 6 -->
                 <article class="cp-card">
                     <img src="imagen/tactico_urbano.jfif" alt="Táctico Urbano" class="cp-card-img">
                     <div class="cp-card-body">
@@ -100,25 +136,32 @@
                         <p class="cp-card-text">Indumentaria de diseño táctico urbano, camisas de alta resistencia, calzados y gorras.</p>
                     </div>
                 </article>
+
             </main>
         </div>
     </div>
+
+    <!-- PIE DE PÁGINA -->
     <footer class="cp-footer">
         <div class="cp-container cp-footer-content">
             <div class="cp-footer-brand">
                 <p class="cp-footer-title">CAZADOR PATAGÓNICO</p>
                 <p class="cp-footer-sub">Zapala, Patagonia Argentina</p>
             </div>
+            
             <div class="cp-footer-social">
-                <a href="construccion.html"><i class="fa-brands fa-instagram"></i></a>
-                <a href="construccion.html"><i class="fa-brands fa-facebook"></i></a>
-                <a href="construccion.html"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="construccion.html" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="construccion.html" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="construccion.html" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
+
             <div class="cp-footer-copy">
                 <p>&copy; 2026 Cazador Patagónico. Todos los derechos reservados. | Forjados para la Acción.</p>
             </div>
         </div>
     </footer>
+
+    <!-- SCRIPT DE INTRO Y CONTROL -->
     <script src="main.js"></script>
 </body>
 </html>
