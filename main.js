@@ -4,59 +4,86 @@ document.addEventListener('DOMContentLoaded', () => {
     const skipBtn = document.getElementById('cp-skip-btn');
     let fading = false;
     let currentSrc = '';
+    let playAttempted = false;
 
-    // ---------------------------------------------------------
-    // DETECCIÓN ROBUSTA DE DISPOSITIVO MÓVIL
-    // ---------------------------------------------------------
+    // ========================================================
+    // DETECCIÓN DE MÓVIL (múltiples señales combinadas)
+    // ========================================================
     function isMobileDevice() {
-        // 1. User agent clásico (muy confiable para celus reales)
-        const ua = navigator.userAgent || navigator.vendor || window.opera;
-        const uaMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua);
+        const ua = navigator.userAgent || navigator.vendor || '';
+        const uaMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS|FxiOS/i.test(ua);
 
-        // 2. matchMedia con pointer coarse (dedos, no mouse)
-        const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        let coarsePointer = false;
+        try {
+            coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        } catch (e) {}
 
-        // 3. Ancho real del viewport (ya no confiamos solo en esto)
-        const narrowViewport = window.innerWidth <= 768;
+        let narrow = false;
+        try {
+            narrow = window.innerWidth <= 820;
+        } catch (e) {}
 
-        // Es móvil si: tiene UA móvil, O tiene puntero táctil Y pantalla angosta
-        return uaMobile || (coarsePointer && narrowViewport);
+        // También detectar pantallas touch (algunos tablets)
+        const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+        // Es móvil si: UA móvil O (touch + pantalla angosta) O (coarse pointer + angosta)
+        const result = uaMobile || (hasTouch && narrow) || (coarsePointer && narrow);
+
+        console.log('[CP-Intro] Detección →',
+            { ua, uaMobile, coarsePointer, narrow, hasTouch, result });
+
+        return result;
     }
 
-    // ---------------------------------------------------------
-    // ASIGNAR EL VIDEO CORRECTO
-    // ---------------------------------------------------------
+    // ========================================================
+    // ASIGNAR EL VIDEO CORRECTO (limpiando cache)
+    // ========================================================
     function initIntroVideo() {
         if (!video) return;
 
         const isMobile = isMobileDevice();
-        const videoSrc = isMobile ? 'video/intro_celu.mp4' : 'video/intro.mp4';
+        const baseSrc = isMobile ? 'video/intro_celu.mp4' : 'video/intro.mp4';
+        // Query string anti-cache (cambia si actualizás el video)
+        const videoSrc = baseSrc + '?v=2';
 
-        // Evita recargar si ya está puesto
         if (currentSrc === videoSrc) return;
         currentSrc = videoSrc;
 
-        console.log('[CP-Intro] Dispositivo móvil:', isMobile, '→ video:', videoSrc);
+        console.log('[CP-Intro] Video elegido →', videoSrc);
 
-        // MÉTODO ROBUSTO: asignar src directo (funciona mejor en iOS/Android)
-        video.src = videoSrc;
-
-        // Fallback por si el navegador necesita un <source> explícito
-        // (no lo agregamos al DOM para no duplicar; solo aseguramos src)
-
+        // LIMPIAR el src anterior para forzar recarga real
+        video.pause();
+        video.removeAttribute('src');
+        // Eliminar cualquier <source> hijo por las dudas
+        while (video.firstChild) {
+            video.removeChild(video.firstChild);
+        }
         video.load();
 
-        // Intentar reproducir cuando haya datos suficientes
-        video.addEventListener('loadeddata', () => {
+        // Asignar el nuevo src
+        video.src = videoSrc;
+        video.load();
+
+        // Reproducir cuando haya datos disponibles (múltiples eventos por si uno no dispara)
+        const tryPlayOnce = () => {
+            if (playAttempted) return;
+            playAttempted = true;
             tryPlay();
-        }, { once: true });
+        };
+
+        video.addEventListener('loadeddata', tryPlayOnce, { once: true });
+        video.addEventListener('canplay', tryPlayOnce, { once: true });
+        video.addEventListener('loadedmetadata', tryPlayOnce, { once: true });
+
+        // Si a los 1.5s no cargó nada, intentar igual
+        setTimeout(tryPlayOnce, 1500);
     }
 
     initIntroVideo();
 
-    // ---------------------------------------------------------
+    // ========================================================
     // DESBLOQUEAR PÁGINA
-    // ---------------------------------------------------------
+    // ========================================================
     function unlockPage() {
         if (fading || !overlay) return;
         fading = true;
@@ -81,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
             await video.play();
+            console.log('[CP-Intro] Reproduciendo:', video.currentSrc);
         } catch (e) {
             console.log('[CP-Intro] Autoplay bloqueado, esperando toque.', e);
             if (skipBtn) {
@@ -98,9 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflowX = 'hidden';
     }
 
-    // ---------------------------------------------------------
+    // ========================================================
     // EVENTOS
-    // ---------------------------------------------------------
+    // ========================================================
     if (overlay) {
         overlay.addEventListener('click', (e) => {
             if (e.target.closest('#cp-skip-btn')) {
@@ -125,13 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
         video.addEventListener('ended', unlockPage);
 
         video.addEventListener('error', () => {
-            console.error('[CP-Intro] Error cargando el video:', video.error);
-            // Si falla el móvil, intentar con el de PC como fallback
-            if (isMobileDevice() && currentSrc !== 'video/intro.mp4') {
+            console.error('[CP-Intro] Error cargando el video:', video.error, 'src:', video.src);
+            // Fallback: si falla el móvil, usar el de PC
+            if (currentSrc && currentSrc.indexOf('intro_celu.mp4') !== -1) {
                 console.warn('[CP-Intro] Fallback a intro.mp4');
-                currentSrc = 'video/intro.mp4';
-                video.src = 'video/intro.mp4';
+                currentSrc = 'video/intro.mp4?v=2';
+                video.src = 'video/intro.mp4?v=2';
                 video.load();
+                playAttempted = false;
+                video.addEventListener('loadeddata', () => tryPlay(), { once: true });
                 return;
             }
             unlockPage();
