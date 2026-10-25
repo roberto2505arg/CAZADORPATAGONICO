@@ -5,34 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cazador Patagónico | Forjados para la Acción</title>
     
-    <!-- FUENTES E ICONOS -->
+    <!-- FUENTES E ICONOS DE FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-        img, video { max-width: 100%; display: block; }
-    </style>
 </head>
 <body>
 
     <!-- OVERLAY INTRO DE VIDEO -->
     <div id="cp-intro-overlay" class="cp-intro-overlay">
         <div class="cp-intro-container">
-            <!--
-                El src se asigna dinámicamente desde main.js según el dispositivo:
-                - Celular  -> video/intro_celu.mp4
-                - PC       -> video/intro.mp4
-                Los atributos playsinline / webkit-playsinline son clave para iOS.
-            -->
-            <video
-                id="cp-intro-video"
-                class="cp-intro-video"
-                autoplay
-                muted
-                playsinline
-                webkit-playsinline
-                preload="auto"
-            >
+            <video id="cp-intro-video" class="cp-intro-video" autoplay muted playsinline preload="auto">
+                <source src="video/intro.mp4" type="video/mp4">
                 Tu navegador no soporta video HTML5.
             </video>
             
@@ -51,7 +34,7 @@
             </a>
             
             <div class="cp-nav-links">
-                <a href="#catalogo" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
+                <a href="mochilas.html#catalogo" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-location-dot"></i> <span>Ubicación</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-envelope"></i> <span>Contacto</span></a>
@@ -61,19 +44,19 @@
         </div>
     </nav>
 
-    <!-- CONTENEDOR PRINCIPAL DE LA TIENDA -->
+    <!-- CONTENEDOR PRINCIPAL -->
     <div class="cp-wrapper">
         <div class="cp-container">
             
-            <!-- PORTADA / HERO BANNER CON HOTSPOTS ALINEADOS -->
+            <!-- PORTADA / HERO BANNER CON HOTSPOTS INTERACTIVOS -->
             <header class="cp-header">
                 <div class="cp-banner-container">
                     <img src="imagen/banner.jfif" alt="Cazador Patagónico - Forjados para la Acción" class="cp-banner-img">
                     
-                    <!-- BOTÓN IZQUIERDO: VER LÍNEA TÁCTICA -->
+                    <!-- BOTÓN IZQUIERDA: VER LÍNEA TÁCTICA -->
                     <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-tactica" title="Ver Línea Táctica"></a>
 
-                    <!-- BOTÓN DERECHO: VER LÍNEA DEPORTIVA -->
+                    <!-- BOTÓN DERECHA: VER LÍNEA DEPORTIVA -->
                     <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-deportiva" title="Ver Línea Deportiva"></a>
                 </div>
 
@@ -85,67 +68,85 @@
             <!-- CATÁLOGO EN REJILLA (3 COLUMNAS EN PC) -->
             <main class="cp-grid" id="catalogo">
                 
-                <!-- Tarjeta 1 -->
-                <article class="cp-card">
-                    <img src="imagen/mochilas.jfif" alt="Bolsos y Mochilas Tácticas" class="cp-card-img">
-                    <div class="cp-card-body">
-                        <span class="cp-badge">TACTICO & Trekking</span>
-                        <h3 class="cp-card-title">Bolsos & Mochilas</h3>
-                        <p class="cp-card-text">Mochilas tácticas, de asalto, expedición, bolsos estancos y riñoneras para distintos usos extremos y diarios.</p>
-                    </div>
-                </article>
+                <!-- Tarjeta 1: MOCHILAS (100% CLICKEABLE) -->
+                <a href="mochilas.html" class="cp-card-link-wrapper">
+                    <article class="cp-card">
+                        <img src="imagen/mochilas.jfif" alt="Bolsos y Mochilas Tácticas" class="cp-card-img">
+                        <div class="cp-card-body">
+                            <span class="cp-badge">TACTICO & Trekking</span>
+                            <h3 class="cp-card-title">Bolsos & Mochilas</h3>
+                            <p class="cp-card-text">Mochilas tácticas, de asalto, expedición, bolsos estancos y riñoneras para distintos usos extremos y diarios.</p>
+                            <span class="cp-card-action-text">Ver Colección <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </article>
+                </a>
 
                 <!-- Tarjeta 2 -->
-                <article class="cp-card">
-                    <img src="imagen/calzado_tactico.jfif" alt="Calzado Táctico" class="cp-card-img">
-                    <div class="cp-card-body">
-                        <span class="cp-badge">Todo Terreno</span>
-                        <h3 class="cp-card-title">Calzado Táctico</h3>
-                        <p class="cp-card-text">Borcegos de combate impermeables, zapatillas trail running y calzado de trekking reinforced.</p>
-                    </div>
-                </article>
+                <a href="construccion.html" class="cp-card-link-wrapper">
+                    <article class="cp-card">
+                        <img src="imagen/calzado_tactico.jfif" alt="Calzado Táctico" class="cp-card-img">
+                        <div class="cp-card-body">
+                            <span class="cp-badge">Todo Terreno</span>
+                            <h3 class="cp-card-title">Calzado Táctico</h3>
+                            <p class="cp-card-text">Borcegos de combate impermeables, zapatillas trail running y calzado de trekking reinforced.</p>
+                            <span class="cp-card-action-text cp-card-action-muted">Próximamente</span>
+                        </div>
+                    </article>
+                </a>
 
                 <!-- Tarjeta 3 -->
-                <article class="cp-card">
-                    <img src="imagen/camping.avif" alt="Camping, Caza y Pesca" class="cp-card-img">
-                    <div class="cp-card-body">
-                        <span class="cp-badge">Aire libre</span>
-                        <h3 class="cp-card-title">Camping, Caza & Pesca</h3>
-                        <p class="cp-card-text">Carpas técnicas, navajas, equipo de orientación, linternas tácticas y accesorios de pesca.</p>
-                    </div>
-                </article>
+                <a href="construccion.html" class="cp-card-link-wrapper">
+                    <article class="cp-card">
+                        <img src="imagen/camping.avif" alt="Camping, Caza y Pesca" class="cp-card-img">
+                        <div class="cp-card-body">
+                            <span class="cp-badge">Aire libre</span>
+                            <h3 class="cp-card-title">Camping, Caza & Pesca</h3>
+                            <p class="cp-card-text">Carpas técnicas, navajas, equipo de orientación, linternas tácticas y accesorios de pesca.</p>
+                            <span class="cp-card-action-text cp-card-action-muted">Próximamente</span>
+                        </div>
+                    </article>
+                </a>
 
                 <!-- Tarjeta 4 -->
-                <article class="cp-card">
-                    <div class="cp-card-img-wrapper">
-                        <img src="imagen/running_ciclismo.jfif" alt="Running y Ciclismo" class="cp-card-img cp-card-img-fit">
-                    </div>
-                    <div class="cp-card-body">
-                        <span class="cp-badge cp-badge-neon">Alto Rendimiento</span>
-                        <h3 class="cp-card-title">Running & Ciclismo</h3>
-                        <p class="cp-card-text">Indumentaria térmica de compresión, chalecos de hidratación y accesorios de alto rendimiento.</p>
-                    </div>
-                </article>
+                <a href="construccion.html" class="cp-card-link-wrapper">
+                    <article class="cp-card">
+                        <div class="cp-card-img-wrapper">
+                            <img src="imagen/running_ciclismo.jfif" alt="Running y Ciclismo" class="cp-card-img cp-card-img-fit">
+                        </div>
+                        <div class="cp-card-body">
+                            <span class="cp-badge cp-badge-neon">Alto Rendimiento</span>
+                            <h3 class="cp-card-title">Running & Ciclismo</h3>
+                            <p class="cp-card-text">Indumentaria térmica de compresión, chalecos de hidratación y accesorios de alto rendimiento.</p>
+                            <span class="cp-card-action-text cp-card-action-muted">Próximamente</span>
+                        </div>
+                    </article>
+                </a>
 
                 <!-- Tarjeta 5 -->
-                <article class="cp-card">
-                    <img src="imagen/k9.jfif" alt="Mascotas y Línea K9 Táctica" class="cp-card-img">
-                    <div class="cp-card-body">
-                        <span class="cp-badge">Línea K9 Táctica</span>
-                        <h3 class="cp-card-title">Mascotas & K9</h3>
-                        <p class="cp-card-text">Arneses tácticos con sistema MOLLE, correas deportivas de alta resistencia, bozales de trabajo y accesorios outdoor.</p>
-                    </div>
-                </article>
+                <a href="construccion.html" class="cp-card-link-wrapper">
+                    <article class="cp-card">
+                        <img src="imagen/k9.jfif" alt="Mascotas y Línea K9 Táctica" class="cp-card-img">
+                        <div class="cp-card-body">
+                            <span class="cp-badge">Línea K9 Táctica</span>
+                            <h3 class="cp-card-title">Mascotas & K9</h3>
+                            <p class="cp-card-text">Arneses tácticos con sistema MOLLE, correas deportivas de alta resistencia, bozales de trabajo y accesorios outdoor.</p>
+                            <span class="cp-card-action-text cp-card-action-muted">Próximamente</span>
+                        </div>
+                    </article>
+                </a>
 
                 <!-- Tarjeta 6 -->
-                <article class="cp-card">
-                    <img src="imagen/tactico_urbano.jfif" alt="Táctico Urbano" class="cp-card-img">
-                    <div class="cp-card-body">
-                        <span class="cp-badge">Estilo & Acción</span>
-                        <h3 class="cp-card-title">Táctico Urbano</h3>
-                        <p class="cp-card-text">Indumentaria de diseño táctico urbano, camisas de alta resistencia, calzados y gorras.</p>
-                    </div>
-                </article>
+                <a href="construccion.html" class="cp-card-link-wrapper">
+                    <article class="cp-card">
+                        <img src="imagen/tactico_urbano.jfif" alt="Táctico Urbano" class="cp-card-img">
+                        <div class="cp-card-body">
+                            <span class="cp-badge">Estilo & Acción</span>
+                            <h3 class="cp-card-title">Táctico Urbano</h3>
+                            <p class="cp-card-text">Indumentaria de diseño táctico urbano, camisas de alta resistencia, calzados y gorras.</p>
+                            <span class="cp-card-action-text cp-card-action-muted">Próximamente</span>
+                        </div>
+                    </article>
+                </a>
 
             </main>
         </div>
