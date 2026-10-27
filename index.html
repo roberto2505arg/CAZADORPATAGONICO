@@ -39,7 +39,12 @@
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-location-dot"></i> <span>Ubicación</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-envelope"></i> <span>Contacto</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-brands fa-instagram"></i> <span>Redes</span></a>
-                <a href="construccion.html" class="cp-nav-item cp-nav-cart"><i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span></a>
+                
+                <!-- BOTÓN DE CARRITO -->
+                <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito">
+                    <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
+                    <span id="cp-cart-count" class="cp-cart-count">0</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -48,27 +53,20 @@
     <div class="cp-wrapper">
         <div class="cp-container">
             
-            <!-- PORTADA / HERO BANNER CON HOTSPOTS INTERACTIVOS -->
+            <!-- PORTADA -->
             <header class="cp-header">
                 <div class="cp-banner-container">
                     <img src="imagen/banner.jfif" alt="Cazador Patagónico - Forjados para la Acción" class="cp-banner-img">
-                    
-                    <!-- BOTÓN IZQUIERDA: VER LÍNEA TÁCTICA -->
-                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-tactica" title="Ver Línea Táctica"></a>
-
-                    <!-- BOTÓN DERECHA: VER LÍNEA DEPORTIVA -->
-                    <a href="#catalogo" class="cp-banner-hotspot cp-hotspot-deportiva" title="Ver Línea Deportiva"></a>
                 </div>
-
                 <p class="cp-desc">
                     Nacidos en el rigor del viento y la montaña. Tienda online especializada en indumentaria, equipo y accesorios de alto rendimiento, fuerzas de seguridad, amantes de la caza, pesca, running, ciclismo y estilo táctico urbano.
                 </p>
             </header>
 
-            <!-- CATÁLOGO EN REJILLA (3 COLUMNAS EN PC) -->
+            <!-- CATÁLOGO EN REJILLA -->
             <main class="cp-grid" id="catalogo">
                 
-                <!-- Tarjeta 1: MOCHILAS (100% CLICKEABLE) -->
+                <!-- Tarjeta 1: Mochilas -->
                 <a href="mochilas.html" class="cp-card-link-wrapper">
                     <article class="cp-card">
                         <img src="imagen/mochilas.jfif" alt="Bolsos y Mochilas Tácticas" class="cp-card-img">
@@ -110,11 +108,9 @@
                 <!-- Tarjeta 4 -->
                 <a href="construccion.html" class="cp-card-link-wrapper">
                     <article class="cp-card">
-                        <div class="cp-card-img-wrapper">
-                            <img src="imagen/running_ciclismo.jfif" alt="Running y Ciclismo" class="cp-card-img cp-card-img-fit">
-                        </div>
+                        <img src="imagen/running_ciclismo.jfif" alt="Running y Ciclismo" class="cp-card-img">
                         <div class="cp-card-body">
-                            <span class="cp-badge cp-badge-neon">Alto Rendimiento</span>
+                            <span class="cp-badge">Alto Rendimiento</span>
                             <h3 class="cp-card-title">Running & Ciclismo</h3>
                             <p class="cp-card-text">Indumentaria térmica de compresión, chalecos de hidratación y accesorios de alto rendimiento.</p>
                             <span class="cp-card-action-text cp-card-action-muted">Próximamente</span>
@@ -152,6 +148,44 @@
         </div>
     </div>
 
+    <!-- MODAL / VENTANA LATERAL DEL CARRITO -->
+    <div id="cp-cart-modal" class="cp-cart-modal" aria-hidden="true">
+        <div class="cp-cart-overlay" id="cp-cart-close-overlay"></div>
+        <div class="cp-cart-sidebar">
+            <div class="cp-cart-header">
+                <h3><i class="fa-solid fa-cart-shopping"></i> TU CARRITO</h3>
+                <button id="cp-cart-close-btn" class="cp-cart-close-btn" type="button" aria-label="Cerrar Carrito">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="cp-cart-items" class="cp-cart-items"></div>
+
+            <div class="cp-cart-footer">
+                <div class="cp-cart-total-row">
+                    <span>Total:</span>
+                    <span id="cp-cart-total-price" class="cp-cart-total-price">$0 ARS</span>
+                </div>
+
+                <form id="cp-cart-form" class="cp-cart-form" onsubmit="return false;">
+                    <div class="cp-form-group">
+                        <input type="text" id="cp-client-name" placeholder="Tu Nombre y Apellido" required>
+                    </div>
+                    <div class="cp-form-group">
+                        <input type="text" id="cp-client-city" placeholder="Ciudad (ej. Zapala, NQN)" required>
+                    </div>
+
+                    <button id="cp-send-whatsapp-btn" type="button" class="cp-cart-checkout-btn">
+                        <i class="fa-brands fa-whatsapp"></i> ENVIAR PEDIDO POR WHATSAPP
+                    </button>
+                    <button id="cp-clear-cart-btn" type="button" class="cp-cart-clear-btn">
+                        Vaciar Carrito
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- PIE DE PÁGINA -->
     <footer class="cp-footer">
         <div class="cp-container cp-footer-content">
@@ -172,7 +206,8 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE INTRO -->
+    <!-- SCRIPTS -->
     <script src="main.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>

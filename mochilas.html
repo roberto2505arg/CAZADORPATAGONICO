@@ -7,13 +7,9 @@
     
     <!-- FUENTES E ICONOS DE FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-        img, video { max-width: 100%; display: block; }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=3.5">
 </head>
-<body style="padding-top: 75px;"> <!-- Padding para el navbar -->
+<body class="cp-page-body">
 
     <!-- BARRA DE NAVEGACIÓN SUPERIOR HORIZONTAL -->
     <nav class="cp-navbar">
@@ -24,12 +20,15 @@
             </a>
             
             <div class="cp-nav-links">
-                <a href="#catalogo" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
+                <a href="index.html" class="cp-nav-item"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a href="mochilas.html" class="cp-nav-item active"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a>
-                <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-location-dot"></i> <span>Ubicación</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-envelope"></i> <span>Contacto</span></a>
-                <a href="construccion.html" class="cp-nav-item"><i class="fa-brands fa-instagram"></i> <span>Redes</span></a>
-                <a href="construccion.html" class="cp-nav-item cp-nav-cart"><i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span></a>
+                
+                <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito">
+                    <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
+                    <span id="cp-cart-count" class="cp-cart-count">0</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -39,131 +38,296 @@
         <div class="cp-container">
             
             <!-- ENCABEZADO DE SECCIÓN -->
-            <header class="cp-mochilas-header" id="descripcion">
-                <h1 class="cp-mochilas-title">SECCIÓN MOCHILAS & BOLSOS</h1>
-                <p class="cp-mochilas-desc">
-                    En Cazador Patagónico entendemos que una mochila no es solo un accesorio, es tu compañera de ruta. Por eso, nuestras mochilas están forjadas con la máxima resistencia, gran capacidad y múltiples compartimientos. Son ideales para desafiar la exigencia de la aventura al aire libre, pero también perfectas para el uso diario, combinando estilo táctico y funcionalidad urbana.
+            <header class="cp-page-header">
+                <h1 class="cp-page-title">SECCIÓN MOCHILAS & BOLSOS</h1>
+                <p class="cp-page-desc">
+                    En Cazador Patagónico entendemos que una mochila no es solo un accesorio, es tu compañera de ruta. Forjadas con la máxima resistencia, gran capacidad y múltiples compartimientos para desafiar el rigor de la Patagonia o el uso diario urbano.
                 </p>
             </header>
 
-            <!-- CATÁLOGO DE MOCHILAS (GRID DE 3 COLUMNAS) -->
-            <main class="cp-mochilas-catalogo" id="catalogo">
-                <div class="cp-mochilas-grid">
-                    
-                    <!-- Tarjeta 1: Camelbak 45L -->
-                    <article class="cp-mochilas-card">
-                        <!-- Portada generada -->
-                        <img src="imagen/mochila45.png" alt="Mochila Táctica compatible con Camelbak (45L)" class="cp-mochilas-card-img">
-                        <div class="cp-mochilas-card-body">
-                            <h3 class="cp-mochilas-card-title">Mochila Táctica de Carga Compatible con Camelbak (45L)</h3>
-                            <p class="cp-mochilas-card-text">Resistencia extrema de 45L. Forjada para la Patagonia. Capacidad máxima y compatibilidad con sistema de hidratación.</p>
-                            <span class="cp-mochilas-card-price">$95.000</span>
-                            <div class="cp-mochilas-card-btns">
-                                <a href="construccion.html" class="cp-card-btn cp-card-btn-accent">VER DETALLES</a>
-                                <a href="construccion.html" class="cp-card-btn">AÑADIR AL CARRITO</a>
+            <!-- CATÁLOGO COMPLETO DE MOCHILAS (6 PRODUCTOS) -->
+            <main class="cp-grid" id="catalogo">
+                
+                <!-- PRODUCTO 1: Camelbak 45L -->
+                <article class="cp-card">
+                    <div class="cp-gallery-flex-container">
+                        <div class="cp-gallery-thumbs-vertical">
+                            <img src="imagen/mochila45.png" alt="Vista Beige" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-45l', this)">
+                            <img src="imagen/mochila45_negro.jpg" alt="Vista Negro" class="cp-thumb-v" onerror="this.src='imagen/mochila45.png'" onclick="cambiarImagenPrincipal('cp-main-img-45l', this)">
+                            <img src="imagen/mochila45_uca.jpg" alt="Vista UCA" class="cp-thumb-v" onerror="this.src='imagen/mochila45.png'" onclick="cambiarImagenPrincipal('cp-main-img-45l', this)">
+                            
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/mochila45.mp4')" title="Ver Video">
+                                <video class="cp-thumb-video-el" muted preload="metadata">
+                                    <source src="video/mochila45.mp4" type="video/mp4">
+                                </video>
+                                <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
-                    </article>
 
-                    <!-- Tarjeta 2: Condor 28L -->
-                    <article class="cp-mochilas-card">
-                        <!-- Portada generada -->
-                        <img src="imagen/mochila_condor.png" alt="Mochila Táctica de Asalto Condor (28L)" class="cp-mochilas-card-img">
-                        <div class="cp-mochilas-card-body">
-                            <h3 class="cp-mochilas-card-title">Mochila Táctica de Asalto Condor (28L)</h3>
-                            <p class="cp-mochilas-card-text">Agilidad y organización de 28L. Diseño compacto estilo Condor/5.11 con múltiples compartimientos. Perfecta para el uso diario o misiones tácticas rápidas.</p>
-                            <span class="cp-mochilas-card-price">$72.000</span>
-                            <div class="cp-mochilas-card-btns">
-                                <a href="construccion.html" class="cp-card-btn cp-card-btn-accent">VER DETALLES</a>
-                                <a href="construccion.html" class="cp-card-btn">AÑADIR AL CARRITO</a>
+                        <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-45l')" title="Ampliar Imagen">
+                            <img src="imagen/mochila45.png" id="cp-main-img-45l" alt="Mochila Táctica 45L" class="cp-card-img-v">
+                            <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
+                        </div>
+                    </div>
+
+                    <div class="cp-card-body">
+                        <span class="cp-badge">45 Litros</span>
+                        <h3 class="cp-card-title">Mochila Táctica de Carga (45L)</h3>
+                        <p class="cp-card-text">Resistencia extrema de 45L. Forjada para la Patagonia. Capacidad máxima y compatibilidad con sistema de hidratación.</p>
+                        <span class="cp-mochilas-card-price">$50.000 ARS</span>
+                        <div class="cp-mochilas-card-btns">
+                            <button class="cp-card-btn cp-card-btn-accent cp-btn-add-cart" 
+                                    data-id="mochila-45l" 
+                                    data-title="Mochila Táctica de Carga 45L (Camelbak)" 
+                                    data-price="50000" 
+                                    data-img="imagen/mochila45.png">
+                                <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCTO 2: Condor 28L -->
+                <article class="cp-card">
+                    <div class="cp-gallery-flex-container">
+                        <div class="cp-gallery-thumbs-vertical">
+                            <img src="imagen/mochila_condor.png" alt="Vista Principal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-28l', this)">
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/intro.mp4')" title="Ver Video">
+                                <video class="cp-thumb-video-el" muted preload="metadata">
+                                    <source src="video/intro.mp4" type="video/mp4">
+                                </video>
+                                <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
-                    </article>
 
-                    <!-- Tarjeta 3: Mammut-style -->
-                    <article class="cp-mochilas-card">
-                        <!-- Portada generada -->
-                        <img src="imagen/mochila_mamut.png" alt="Bolso/Mochila Mammut-style" class="cp-mochilas-card-img">
-                        <div class="cp-mochilas-card-body">
-                            <h3 class="cp-mochilas-card-title">Bolso/Mochila de Asalto Mammut-style</h3>
-                            <p class="cp-mochilas-card-text">El bolso de asalto de montaña definitivo. Diseño versátil que se convierte en mochila. Forjado con Cordura de alta resistencia.</p>
-                            <span class="cp-mochilas-card-price">$88.000</span>
-                            <div class="cp-mochilas-card-btns">
-                                <a href="construccion.html" class="cp-card-btn cp-card-btn-accent">VER DETALLES</a>
-                                <a href="construccion.html" class="cp-card-btn">AÑADIR AL CARRITO</a>
+                        <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-28l')" title="Ampliar Imagen">
+                            <img src="imagen/mochila_condor.png" id="cp-main-img-28l" alt="Mochila Condor 28L" class="cp-card-img-v">
+                            <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
+                        </div>
+                    </div>
+
+                    <div class="cp-card-body">
+                        <span class="cp-badge">28 Litros</span>
+                        <h3 class="cp-card-title">Mochila Táctica de Asalto Condor (28L)</h3>
+                        <p class="cp-card-text">Agilidad y organización de 28L. Diseño compacto estilo Condor con múltiples compartimientos.</p>
+                        <span class="cp-mochilas-card-price">$72.000 ARS</span>
+                        <div class="cp-mochilas-card-btns">
+                            <button class="cp-card-btn cp-card-btn-accent cp-btn-add-cart" 
+                                    data-id="mochila-28l" 
+                                    data-title="Mochila Táctica de Asalto Condor 28L" 
+                                    data-price="72000" 
+                                    data-img="imagen/mochila_condor.png">
+                                <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCTO 3: Mammut-style -->
+                <article class="cp-card">
+                    <div class="cp-gallery-flex-container">
+                        <div class="cp-gallery-thumbs-vertical">
+                            <img src="imagen/mochila_mamut.png" alt="Vista Principal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-mamut', this)">
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/intro.mp4')" title="Ver Video">
+                                <video class="cp-thumb-video-el" muted preload="metadata">
+                                    <source src="video/intro.mp4" type="video/mp4">
+                                </video>
+                                <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
-                    </article>
 
-                    <!-- Tarjeta 4: Maletín Cordura -->
-                    <article class="cp-mochilas-card">
-                        <!-- Portada generada -->
-                        <img src="imagen/maletin.png" alt="Maletín Táctico Cordura" class="cp-mochilas-card-img">
-                        <div class="cp-mochilas-card-body">
-                            <h3 class="cp-mochilas-card-title">Maletín Táctico Cordura</h3>
-                            <p class="cp-mochilas-card-text">Organización y resistencia Cordura. Maletín estilo duffel táctico para equipo y ropa.</p>
-                            <span class="cp-mochilas-card-price">$65.000</span>
-                            <div class="cp-mochilas-card-btns">
-                                <a href="construccion.html" class="cp-card-btn cp-card-btn-accent">VER DETALLES</a>
-                                <a href="construccion.html" class="cp-card-btn">AÑADIR AL CARRITO</a>
+                        <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-mamut')" title="Ampliar Imagen">
+                            <img src="imagen/mochila_mamut.png" id="cp-main-img-mamut" alt="Bolso Mammut" class="cp-card-img-v">
+                            <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
+                        </div>
+                    </div>
+
+                    <div class="cp-card-body">
+                        <span class="cp-badge">Montaña / Expedición</span>
+                        <h3 class="cp-card-title">Bolso/Mochila Mammut-style</h3>
+                        <p class="cp-card-text">El bolso de asalto de montaña definitivo. Versátil que se convierte en mochila con Cordura.</p>
+                        <span class="cp-mochilas-card-price">$88.000 ARS</span>
+                        <div class="cp-mochilas-card-btns">
+                            <button class="cp-card-btn cp-card-btn-accent cp-btn-add-cart" 
+                                    data-id="mochila-mammut" 
+                                    data-title="Bolso/Mochila Mammut-style" 
+                                    data-price="88000" 
+                                    data-img="imagen/mochila_mamut.png">
+                                <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCTO 4: Maletín Cordura -->
+                <article class="cp-card">
+                    <div class="cp-gallery-flex-container">
+                        <div class="cp-gallery-thumbs-vertical">
+                            <img src="imagen/maletin.png" alt="Vista Principal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-maletin', this)">
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/intro.mp4')" title="Ver Video">
+                                <video class="cp-thumb-video-el" muted preload="metadata">
+                                    <source src="video/intro.mp4" type="video/mp4">
+                                </video>
+                                <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
-                    </article>
 
-                    <!-- Tarjeta 5: Bandolera -->
-                    <article class="cp-mochilas-card">
-                        <!-- Portada generada -->
-                        <img src="imagen/bandolera_.png" alt="Bandolera Táctica de Asalto" class="cp-mochilas-card-img">
-                        <div class="cp-mochilas-card-body">
-                            <h3 class="cp-mochilas-card-title">Bandolera Táctica de Asalto</h3>
-                            <p class="cp-mochilas-card-text">Acceso rápido y discreto. Bandolera táctica de asalto de un hombro. Perfecta para el uso diario en la ciudad.</p>
-                            <span class="cp-mochilas-card-price">$48.000</span>
-                            <div class="cp-mochilas-card-btns">
-                                <a href="construccion.html" class="cp-card-btn cp-card-btn-accent">VER DETALLES</a>
-                                <a href="construccion.html" class="cp-card-btn">AÑADIR AL CARRITO</a>
+                        <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-maletin')" title="Ampliar Imagen">
+                            <img src="imagen/maletin.png" id="cp-main-img-maletin" alt="Maletín Táctico Cordura" class="cp-card-img-v">
+                            <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
+                        </div>
+                    </div>
+
+                    <div class="cp-card-body">
+                        <span class="cp-badge">Duffel / Viaje</span>
+                        <h3 class="cp-card-title">Maletín Táctico Cordura</h3>
+                        <p class="cp-card-text">Organización y resistencia Cordura. Maletín estilo duffel táctico para equipo e indumentaria.</p>
+                        <span class="cp-mochilas-card-price">$65.000 ARS</span>
+                        <div class="cp-mochilas-card-btns">
+                            <button class="cp-card-btn cp-card-btn-accent cp-btn-add-cart" 
+                                    data-id="maletin-cordura" 
+                                    data-title="Maletín Táctico Cordura" 
+                                    data-price="65000" 
+                                    data-img="imagen/maletin.png">
+                                <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCTO 5: Bandolera Táctica -->
+                <article class="cp-card">
+                    <div class="cp-gallery-flex-container">
+                        <div class="cp-gallery-thumbs-vertical">
+                            <img src="imagen/bandolera_.png" alt="Vista Principal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-bandolera', this)">
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/intro.mp4')" title="Ver Video">
+                                <video class="cp-thumb-video-el" muted preload="metadata">
+                                    <source src="video/intro.mp4" type="video/mp4">
+                                </video>
+                                <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
-                    </article>
 
-                    <!-- Tarjeta 6: Trekking/Running -->
-                    <article class="cp-mochilas-card">
-                        <!-- Portada generada -->
-                        <img src="imagen/chalecorun.png" alt="Chaleco de Hidratación Running y Mochila Trekking" class="cp-mochilas-card-img">
-                        <div class="cp-mochilas-card-body">
-                            <h3 class="cp-mochilas-card-title">Chaleco de Hidratación Running & Mochila Trekking</h3>
-                            <p class="cp-mochilas-card-text">Hidratación sin límites. Chaleco de hidratación para running de alto rendimiento y mochila de hidratación de trekking para senderos.</p>
-                            <span class="cp-mochilas-card-price">$78.000</span>
-                            <div class="cp-mochilas-card-btns">
-                                <a href="construccion.html" class="cp-card-btn cp-card-btn-accent">VER DETALLES</a>
-                                <a href="construccion.html" class="cp-card-btn">AÑADIR AL CARRITO</a>
+                        <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-bandolera')" title="Ampliar Imagen">
+                            <img src="imagen/bandolera_.png" id="cp-main-img-bandolera" alt="Bandolera Táctica" class="cp-card-img-v">
+                            <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
+                        </div>
+                    </div>
+
+                    <div class="cp-card-body">
+                        <span class="cp-badge">Urbano / EDC</span>
+                        <h3 class="cp-card-title">Bandolera Táctica de Asalto</h3>
+                        <p class="cp-card-text">Acceso rápido y discreto. Bandolera táctica de un hombro para uso diario urbano con seguridad.</p>
+                        <span class="cp-mochilas-card-price">$48.000 ARS</span>
+                        <div class="cp-mochilas-card-btns">
+                            <button class="cp-card-btn cp-card-btn-accent cp-btn-add-cart" 
+                                    data-id="bandolera-tactica" 
+                                    data-title="Bandolera Táctica de Asalto" 
+                                    data-price="48000" 
+                                    data-img="imagen/bandolera_.png">
+                                <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PRODUCTO 6: Chaleco Running & Trekking -->
+                <article class="cp-card">
+                    <div class="cp-gallery-flex-container">
+                        <div class="cp-gallery-thumbs-vertical">
+                            <img src="imagen/chalecorun.png" alt="Vista Principal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-chaleco', this)">
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/intro.mp4')" title="Ver Video">
+                                <video class="cp-thumb-video-el" muted preload="metadata">
+                                    <source src="video/intro.mp4" type="video/mp4">
+                                </video>
+                                <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
-                    </article>
 
-                </div>
+                        <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-chaleco')" title="Ampliar Imagen">
+                            <img src="imagen/chalecorun.png" id="cp-main-img-chaleco" alt="Chaleco Running Trekking" class="cp-card-img-v">
+                            <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
+                        </div>
+                    </div>
+
+                    <div class="cp-card-body">
+                        <span class="cp-badge">Trail & Trekking</span>
+                        <h3 class="cp-card-title">Chaleco Running & Trekking</h3>
+                        <p class="cp-card-text">Hidratación sin límites. Chaleco para running de alto rendimiento y mochila de trekking.</p>
+                        <span class="cp-mochilas-card-price">$78.000 ARS</span>
+                        <div class="cp-mochilas-card-btns">
+                            <button class="cp-card-btn cp-card-btn-accent cp-btn-add-cart" 
+                                    data-id="chaleco-trekking" 
+                                    data-title="Chaleco Hidratación Running & Trekking" 
+                                    data-price="78000" 
+                                    data-img="imagen/chalecorun.png">
+                                <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
             </main>
+        </div>
+    </div>
+
+    <!-- MODAL LIGHTBOX GENERAL (PANTALLA COMPLETA) -->
+    <div id="cp-lightbox-modal" class="cp-lightbox-modal">
+        <div class="cp-lightbox-overlay" onclick="cerrarLightboxes()"></div>
+        <div class="cp-lightbox-content">
+            <button class="cp-lightbox-close" onclick="cerrarLightboxes()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="cp-lightbox-img-container" class="cp-lightbox-media-box" style="display: none;">
+                <img id="cp-lightbox-img-el" src="" alt="Vista ampliada">
+            </div>
+            <div id="cp-lightbox-video-container" class="cp-lightbox-media-box" style="display: none;">
+                <video id="cp-lightbox-video-el" controls autoplay playsinline>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SLIDE-OVER CARRITO -->
+    <div id="cp-cart-modal" class="cp-cart-modal" aria-hidden="true">
+        <div class="cp-cart-overlay" id="cp-cart-close-overlay"></div>
+        <div class="cp-cart-sidebar">
+            <div class="cp-cart-header">
+                <h3><i class="fa-solid fa-cart-shopping"></i> TU CARRITO</h3>
+                <button id="cp-cart-close-btn" class="cp-cart-close-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="cp-cart-items" class="cp-cart-items"></div>
+            <div class="cp-cart-footer">
+                <div class="cp-cart-total-row">
+                    <span>Total:</span>
+                    <span id="cp-cart-total-price" class="cp-cart-total-price">$0 ARS</span>
+                </div>
+                <form id="cp-cart-form" class="cp-cart-form" onsubmit="return false;">
+                    <div class="cp-form-group">
+                        <input type="text" id="cp-client-name" placeholder="Tu Nombre y Apellido" required>
+                    </div>
+                    <div class="cp-form-group">
+                        <input type="text" id="cp-client-city" placeholder="Ciudad (ej. Zapala, NQN)" required>
+                    </div>
+                    <button id="cp-send-whatsapp-btn" type="button" class="cp-cart-checkout-btn">
+                        <i class="fa-brands fa-whatsapp"></i> ENVIAR PEDIDO POR WHATSAPP
+                    </button>
+                    <button id="cp-clear-cart-btn" type="button" class="cp-cart-clear-btn">Vaciar Carrito</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- PIE DE PÁGINA -->
     <footer class="cp-footer">
         <div class="cp-container cp-footer-content">
-            <div class="cp-footer-brand">
-                <p class="cp-footer-title">CAZADOR PATAGÓNICO</p>
-                <p class="cp-footer-sub">Zapala, Patagonia Argentina</p>
-            </div>
-            
-            <div class="cp-footer-social">
-                <a href="construccion.html" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="construccion.html" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="construccion.html" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-
-            <div class="cp-footer-copy">
-                <p>&copy; 2026 Cazador Patagónico. Todos los derechos reservados. | Forjados para la Acción.</p>
-            </div>
+            <p class="cp-footer-title">CAZADOR PATAGÓNICO</p>
+            <p class="cp-footer-sub">Zapala, Patagonia Argentina</p>
+            <p class="cp-footer-copy">&copy; 2026 Cazador Patagónico. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script src="main.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>
