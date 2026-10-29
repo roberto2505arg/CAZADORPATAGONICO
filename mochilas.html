@@ -91,17 +91,20 @@
                 <article class="cp-card">
                     <div class="cp-gallery-flex-container">
                         <div class="cp-gallery-thumbs-vertical">
-                            <img src="imagen/mochila_condor.png" alt="Vista Principal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-28l', this)">
-                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/intro.mp4')" title="Ver Video">
+                            <img src="imagen/mochila28_frontal.jpg" alt="Vista Frontal" class="cp-thumb-v active" onclick="cambiarImagenPrincipal('cp-main-img-28l', this)">
+                            <img src="imagen/mochila28_lateral.jpg" alt="Vista Lateral" class="cp-thumb-v" onerror="this.src='imagen/mochila28_frontal.jpg'" onclick="cambiarImagenPrincipal('cp-main-img-28l', this)">
+                            <img src="imagen/mochila28-atras.jpg" alt="Vista Trasera" class="cp-thumb-v" onerror="this.src='imagen/mochila28_frontal.jpg'" onclick="cambiarImagenPrincipal('cp-main-img-28l', this)">
+                            
+                            <div class="cp-thumb-video-wrapper" onclick="abrirModalVideo('video/mochila28l.mp4')" title="Ver Video">
                                 <video class="cp-thumb-video-el" muted preload="metadata">
-                                    <source src="video/intro.mp4" type="video/mp4">
+                                    <source src="video/mochila28l.mp4" type="video/mp4">
                                 </video>
                                 <div class="cp-thumb-video-overlay"><i class="fa-solid fa-play"></i></div>
                             </div>
                         </div>
 
                         <div class="cp-gallery-main-v" onclick="abrirModalImagen('cp-main-img-28l')" title="Ampliar Imagen">
-                            <img src="imagen/mochila_condor.png" id="cp-main-img-28l" alt="Mochila Condor 28L" class="cp-card-img-v">
+                            <img src="imagen/mochila28_frontal.jpg" id="cp-main-img-28l" alt="Mochila Condor 28L" class="cp-card-img-v">
                             <div class="cp-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar</div>
                         </div>
                     </div>
@@ -116,7 +119,7 @@
                                     data-id="mochila-28l" 
                                     data-title="Mochila Táctica de Asalto Condor 28L" 
                                     data-price="72000" 
-                                    data-img="imagen/mochila_condor.png">
+                                    data-img="imagen/mochila28_frontal.jpg">
                                 <i class="fa-solid fa-cart-plus"></i> AÑADIR AL CARRITO
                             </button>
                         </div>
