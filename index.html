@@ -112,20 +112,28 @@
         </div>
     </div>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR CON CARRITO VISIBLE Y MENÚ HAMBURGUESA -->
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR CON CARRITO A LA IZQUIERDA Y HAMBURGUESA A LA DERECHA -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
-            <a href="index.html" class="cp-nav-logo">
-                <img src="imagen/logo.png" alt="Logo CP" class="cp-nav-logo-img">
-                <span>CAZADOR PATAGÓNICO</span>
-            </a>
+            <!-- IZQUIERDA: LOGO + CARRITO CON SÓLO ÍCONO EN MÓVIL -->
+            <div class="cp-nav-left-mobile">
+                <a href="index.html" class="cp-nav-logo">
+                    <img src="imagen/logo.png" alt="Logo CP" class="cp-nav-logo-img">
+                    <span>CAZADOR PATAGÓNICO</span>
+                </a>
+
+                <button id="cp-cart-btn" class="cp-nav-cart-icon-only cp-nav-cart" type="button" aria-label="Ver Carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cp-cart-count" class="cp-cart-count" style="position: absolute; top: -5px; right: -5px;">0</span>
+                </button>
+            </div>
             
-            <!-- CONTENEDOR DERECHO: CARRITO + HAMBURGUESA -->
-            <div class="cp-nav-right-mobile">
-                <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito" style="padding: 6px 10px; background: rgba(212,163,89,0.15); border: 1px solid #d4a359; border-radius: 4px;">
-                    <i class="fa-solid fa-cart-shopping" style="color: #d4a359;"></i> 
-                    <span style="font-size: 0.85rem; font-weight: bold; color: #fff;">Carrito</span>
-                    <span id="cp-cart-count" class="cp-cart-count">0</span>
+            <!-- DERECHA: HAMBURGUESA Y MENÚ DESPLEGABLE -->
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <!-- Carrito largo tradicional para PC -->
+                <button id="cp-cart-btn-desktop" class="cp-nav-item cp-nav-cart cp-nav-cart-desktop" type="button" aria-label="Ver Carrito">
+                    <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
+                    <span id="cp-cart-count-desktop" class="cp-cart-count">0</span>
                 </button>
 
                 <button class="cp-mobile-menu-btn" id="cp-menu-toggle" type="button" aria-label="Abrir Menú">
@@ -146,7 +154,7 @@
         </div>
     </nav>
 
-    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
+    <!-- SCRIPT PARA EL MENÚ MÓVIL Y SINCRONIZACIÓN DE CONTADORES DE CARRITO -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const menuToggle = document.getElementById("cp-menu-toggle");
@@ -163,6 +171,16 @@
                         icon.classList.remove("fa-xmark");
                         icon.classList.add("fa-bars");
                     }
+                });
+            }
+
+            // Sincronizar el contador de escritorio con el móvil
+            const originalCartBtn = document.getElementById("cp-cart-btn");
+            const desktopCartBtn = document.getElementById("cp-cart-btn-desktop");
+            if (desktopCartBtn && originalCartBtn) {
+                desktopCartBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    originalCartBtn.click();
                 });
             }
         });
@@ -405,7 +423,7 @@
                         <i class="fa-solid fa-credit-card"></i> PAGAR CON MERCADO PAGO (SEGURO)
                     </button>
 
-                    <button id="cp-clear-cart-btn" type="button" class="cp-cart-clear-btn">
+                    <button id="cp-clear-cart-btn" type="button" class="cp-clear-cart-btn">
                         Vaciar Carrito
                     </button>
                 </form>
