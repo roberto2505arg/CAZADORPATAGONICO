@@ -76,7 +76,7 @@ img, video {
 }
 
 /* ==========================================================
-   BARRA DE NAVEGACIÓN Y CARRITO
+   BARRA DE NAVEGACIÓN Y MENÚ MÓVIL (HAMBURGUESA)
    ========================================================== */
 .cp-navbar {
     position: fixed;
@@ -113,6 +113,16 @@ img, video {
     width: auto !important;
     max-width: 100% !important;
     display: block !important;
+}
+
+.cp-mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #e5a93b;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
 }
 
 .cp-nav-links {
@@ -154,6 +164,40 @@ img, video {
     text-align: center;
     line-height: 1;
     box-shadow: 0 0 8px rgba(217, 83, 79, 0.5);
+}
+
+@media (max-width: 900px) {
+    .cp-mobile-menu-btn {
+        display: block !important;
+    }
+
+    .cp-nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #181a1b;
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0 !important;
+        border-bottom: 1px solid #2e3235;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .cp-nav-links.active {
+        max-height: 400px !important;
+        padding: 10px 0;
+    }
+
+    .cp-nav-links .cp-nav-item {
+        width: 100%;
+        padding: 12px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
 }
 
 /* ==========================================================
@@ -509,7 +553,7 @@ img, video {
 }
 
 /* ==========================================================
-   MODAL CARRITO (DISEÑO FLUIDO Y SCROLL UNIFICADO PARA MÓVILES)
+   MODAL CARRITO (DISEÑO FLUIDO Y SCROLL UNIFICADO)
    ========================================================== */
 .cp-cart-modal {
     position: fixed;
@@ -549,7 +593,7 @@ img, video {
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    overflow-y: auto !important; /* Scroll general de todo el panel lateral para evitar cortes */
+    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -595,7 +639,7 @@ img, video {
 }
 
 .cp-cart-footer {
-    padding: 15px 20px 50px 20px !important; /* Margen inferior amplio de 50px para celulares */
+    padding: 15px 20px 60px 20px !important;
     background: #111213;
     border-top: 1px solid #2e3235;
 }
@@ -634,7 +678,6 @@ img, video {
     font-size: 0.9rem !important;
 }
 
-/* Botón de WhatsApp / Transferencia */
 #cp-send-whatsapp-btn {
     width: 100% !important;
     padding: 12px !important;
@@ -651,25 +694,24 @@ img, video {
     gap: 8px !important;
 }
 
-/* Botón de Mercado Pago */
-.cp-cart-sidebar button[onclick="pagarConMercadoPago()"] {
+.cp-cart-sidebar .cp-mp-btn-direct {
     width: 100% !important;
     padding: 12px !important;
     background: #009ee3 !important;
     color: #ffffff !important;
-    border: none !important;
+    text-decoration: none !important;
     border-radius: 4px !important;
     font-weight: 700 !important;
     font-size: 0.9rem !important;
-    cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
     margin-top: 6px !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
 }
 
-/* Botón de vaciar carrito */
 #cp-clear-cart-btn {
     background: transparent !important;
     border: none !important;

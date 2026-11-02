@@ -158,7 +158,6 @@ function openCartModal() {
         const viejoAviso = document.getElementById("cp-toast-aviso");
         if (viejoAviso) viejoAviso.remove();
 
-        // Ocultar caja de transferencia al abrir de nuevo
         const transferBox = document.getElementById("cp-transfer-box");
         if (transferBox) transferBox.style.display = "none";
 
@@ -301,6 +300,7 @@ function sendOrderToWhatsApp() {
     }
 }
 
+// SOLUCIÓN DEFINITIVA PARA CELULARES: Abre directo como enlace en pestaña nueva sin bloqueos
 function pagarConMercadoPago() {
     if (cartItems.length === 0) {
         alert("El carrito está vacío.");
@@ -320,34 +320,10 @@ function pagarConMercadoPago() {
 
     const productsTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     const totalMoney = productsTotal + TARIFAPLANA_ENVIO;
-    const montoFormateado = `$${totalMoney.toLocaleString('es-AR')} ARS`;
 
     navigator.clipboard.writeText(totalMoney.toString()).catch(() => {});
-
     closeCartModal();
 
-    const modalRedirect = document.getElementById("cp-mp-redirect-modal");
-    const amountSpan = document.getElementById("cp-mp-modal-amount");
-
-    if (modalRedirect && amountSpan) {
-        amountSpan.textContent = montoFormateado;
-        modalRedirect.style.display = "flex";
-        modalRedirect.classList.add("active");
-        modalRedirect.setAttribute("aria-hidden", "false");
-    }
-}
-
-function cerrarModalMP() {
-    const modalRedirect = document.getElementById("cp-mp-redirect-modal");
-    if (modalRedirect) {
-        modalRedirect.classList.remove("active");
-        modalRedirect.style.display = "none";
-        modalRedirect.setAttribute("aria-hidden", "true");
-    }
-}
-
-function continuarAMercadoPago() {
     const mercadoPagoUrl = "https://link.mercadopago.com.ar/cazadorpatagonico";
     window.open(mercadoPagoUrl, '_blank');
-    cerrarModalMP();
 }
