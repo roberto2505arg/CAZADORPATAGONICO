@@ -76,7 +76,7 @@ img, video {
 }
 
 /* ==========================================================
-   BARRA DE NAVEGACIÓN Y MENÚ MÓVIL (HAMBURGUESA)
+   BARRA DE NAVEGACIÓN Y MENÚ MÓVIL (HAMBURGUESA + CARRITO)
    ========================================================== */
 .cp-navbar {
     position: fixed;
@@ -113,6 +113,12 @@ img, video {
     width: auto !important;
     max-width: 100% !important;
     display: block !important;
+}
+
+.cp-nav-right-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .cp-mobile-menu-btn {
@@ -169,6 +175,10 @@ img, video {
 @media (max-width: 900px) {
     .cp-mobile-menu-btn {
         display: block !important;
+    }
+
+    .cp-nav-right-mobile {
+        display: flex !important;
     }
 
     .cp-nav-links {
@@ -694,22 +704,21 @@ img, video {
     gap: 8px !important;
 }
 
-.cp-cart-sidebar .cp-mp-btn-direct {
+.cp-cart-sidebar button[onclick="pagarConMercadoPago()"] {
     width: 100% !important;
     padding: 12px !important;
     background: #009ee3 !important;
     color: #ffffff !important;
-    text-decoration: none !important;
+    border: none !important;
     border-radius: 4px !important;
     font-weight: 700 !important;
     font-size: 0.9rem !important;
+    cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
     margin-top: 6px !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
 }
 
 #cp-clear-cart-btn {

@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR CON MENÚ MÓVIL HAMBURGUESA -->
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR CON CARRITO VISIBLE Y MENÚ HAMBURGUESA -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
             <a href="index.html" class="cp-nav-logo">
@@ -120,10 +120,18 @@
                 <span>CAZADOR PATAGÓNICO</span>
             </a>
             
-            <!-- BOTÓN HAMBURGUESA -->
-            <button class="cp-mobile-menu-btn" id="cp-menu-toggle" type="button" aria-label="Abrir Menú">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <!-- CONTENEDOR DERECHO: CARRITO + HAMBURGUESA -->
+            <div class="cp-nav-right-mobile">
+                <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito" style="padding: 6px 10px; background: rgba(212,163,89,0.15); border: 1px solid #d4a359; border-radius: 4px;">
+                    <i class="fa-solid fa-cart-shopping" style="color: #d4a359;"></i> 
+                    <span style="font-size: 0.85rem; font-weight: bold; color: #fff;">Carrito</span>
+                    <span id="cp-cart-count" class="cp-cart-count">0</span>
+                </button>
+
+                <button class="cp-mobile-menu-btn" id="cp-menu-toggle" type="button" aria-label="Abrir Menú">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
             
             <div class="cp-nav-links" id="cp-nav-links-menu">
                 <a href="index.html" class="cp-nav-item"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
@@ -133,11 +141,6 @@
                 
                 <button id="cp-account-btn" class="cp-nav-item" type="button" aria-label="Mi Cuenta">
                     <i class="fa-solid fa-user"></i> <span id="cp-account-label">Mi Cuenta</span>
-                </button>
-
-                <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito">
-                    <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
-                    <span id="cp-cart-count" class="cp-cart-count">0</span>
                 </button>
             </div>
         </div>
