@@ -509,7 +509,7 @@ img, video {
 }
 
 /* ==========================================================
-   MODAL CARRITO & AUTH MODAL (SLIDE-OVER CON SCROLL INTERNO)
+   MODAL CARRITO & AUTH MODAL (SLIDE-OVER OPTIMIZADO PARA MÓVILES)
    ========================================================== */
 .cp-cart-modal {
     position: fixed;
@@ -538,8 +538,9 @@ img, video {
 
 .cp-cart-sidebar {
     position: relative;
-    width: 100%; max-width: 420px;
-    height: 100% !important;
+    width: 100%; 
+    max-width: 420px;
+    height: 100vh !important;
     max-height: 100vh !important;
     background: #181a1b;
     border-left: 1px solid #2e3235;
@@ -557,7 +558,7 @@ img, video {
 }
 
 .cp-cart-header {
-    padding: 20px;
+    padding: 12px 16px;
     background: #111213;
     border-bottom: 1px solid #2e3235;
     display: flex;
@@ -569,55 +570,57 @@ img, video {
 .cp-cart-header h3 {
     margin: 0;
     color: #e5a93b;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .cp-cart-close-btn {
     background: transparent;
     border: none;
     color: #a0a5ab;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     cursor: pointer;
+    padding: 5px;
 }
 
 .cp-cart-items {
     flex: 1 1 auto !important;
     overflow-y: auto !important;
-    padding: 20px;
+    padding: 12px 16px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .cp-cart-footer {
     flex-shrink: 0 !important;
-    padding: 20px;
+    padding: 14px 16px 30px 16px !important; /* Margen inferior extra para que los botones nunca queden tapados por la barra del celu */
     background: #111213;
     border-top: 1px solid #2e3235;
-    max-height: 60vh;
+    max-height: 52vh;
     overflow-y: auto !important;
 }
 
 .cp-cart-total-row {
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .cp-cart-total-price {
     color: #e5a93b;
+    text-align: right;
 }
 
 .cp-cart-form {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .cp-form-group {
@@ -626,45 +629,47 @@ img, video {
 
 .cp-form-group input {
     width: 100% !important;
-    padding: 10px !important;
+    padding: 8px 10px !important;
     background: #1d2022 !important;
     border: 1px solid #353a3e !important;
     border-radius: 4px !important;
     color: #ffffff !important;
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
 }
 
-/* Botón de WhatsApp */
+/* Botón de WhatsApp / Transferencia */
 #cp-send-whatsapp-btn {
     width: 100% !important;
-    padding: 11px !important;
-    background: #25d366 !important;
-    color: #ffffff !important;
+    padding: 10px !important;
+    background: #22c55e !important;
+    color: #0d0e10 !important;
     border: none !important;
     border-radius: 4px !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
+    font-size: 0.82rem !important;
     cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
 }
 
 /* Botón de Mercado Pago */
 .cp-cart-sidebar button[onclick="pagarConMercadoPago()"] {
     width: 100% !important;
-    padding: 11px !important;
+    padding: 10px !important;
     background: #009ee3 !important;
     color: #ffffff !important;
     border: none !important;
     border-radius: 4px !important;
     font-weight: 700 !important;
+    font-size: 0.85rem !important;
     cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 8px !important;
-    margin-top: 5px !important;
+    gap: 6px !important;
+    margin-top: 4px !important;
 }
 
 /* Botón de vaciar carrito */
@@ -672,10 +677,10 @@ img, video {
     background: transparent !important;
     border: none !important;
     color: #8c949e !important;
-    font-size: 0.8rem !important;
+    font-size: 0.78rem !important;
     cursor: pointer !important;
     text-decoration: underline !important;
-    margin-top: 8px !important;
+    margin-top: 6px !important;
     text-align: center !important;
     width: 100% !important;
 }
