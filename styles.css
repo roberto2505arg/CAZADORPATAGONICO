@@ -509,7 +509,7 @@ img, video {
 }
 
 /* ==========================================================
-   MODAL CARRITO & AUTH MODAL (SLIDE-OVER)
+   MODAL CARRITO & AUTH MODAL (SLIDE-OVER CON SCROLL INTERNO)
    ========================================================== */
 .cp-cart-modal {
     position: fixed;
@@ -539,15 +539,17 @@ img, video {
 .cp-cart-sidebar {
     position: relative;
     width: 100%; max-width: 420px;
-    height: 100%;
+    height: 100% !important;
+    max-height: 100vh !important;
     background: #181a1b;
     border-left: 1px solid #2e3235;
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     z-index: 10000;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
     transform: translateX(100%);
     transition: transform 0.3s ease;
+    overflow: hidden !important;
 }
 
 .cp-cart-modal.active .cp-cart-sidebar {
@@ -561,6 +563,7 @@ img, video {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .cp-cart-header h3 {
@@ -581,8 +584,8 @@ img, video {
 }
 
 .cp-cart-items {
-    flex: 1;
-    overflow-y: auto;
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -590,9 +593,12 @@ img, video {
 }
 
 .cp-cart-footer {
+    flex-shrink: 0 !important;
     padding: 20px;
     background: #111213;
     border-top: 1px solid #2e3235;
+    max-height: 60vh;
+    overflow-y: auto !important;
 }
 
 .cp-cart-total-row {
