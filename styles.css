@@ -509,7 +509,7 @@ img, video {
 }
 
 /* ==========================================================
-   MODAL CARRITO & AUTH MODAL (SLIDE-OVER OPTIMIZADO PARA MÓVILES)
+   MODAL CARRITO (DISEÑO FLUIDO Y SCROLL UNIFICADO PARA MÓVILES)
    ========================================================== */
 .cp-cart-modal {
     position: fixed;
@@ -541,7 +541,6 @@ img, video {
     width: 100%; 
     max-width: 420px;
     height: 100vh !important;
-    max-height: 100vh !important;
     background: #181a1b;
     border-left: 1px solid #2e3235;
     display: flex !important;
@@ -550,7 +549,8 @@ img, video {
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    overflow: hidden !important;
+    overflow-y: auto !important; /* Scroll general de todo el panel lateral para evitar cortes */
+    -webkit-overflow-scrolling: touch;
 }
 
 .cp-cart-modal.active .cp-cart-sidebar {
@@ -558,19 +558,21 @@ img, video {
 }
 
 .cp-cart-header {
-    padding: 12px 16px;
+    padding: 15px 20px;
     background: #111213;
     border-bottom: 1px solid #2e3235;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .cp-cart-header h3 {
     margin: 0;
     color: #e5a93b;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -580,36 +582,31 @@ img, video {
     background: transparent;
     border: none;
     color: #a0a5ab;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     cursor: pointer;
     padding: 5px;
 }
 
 .cp-cart-items {
-    flex: 1 1 auto !important;
-    overflow-y: auto !important;
-    padding: 12px 16px;
+    padding: 15px 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .cp-cart-footer {
-    flex-shrink: 0 !important;
-    padding: 14px 16px 30px 16px !important; /* Margen inferior extra para que los botones nunca queden tapados por la barra del celu */
+    padding: 15px 20px 50px 20px !important; /* Margen inferior amplio de 50px para celulares */
     background: #111213;
     border-top: 1px solid #2e3235;
-    max-height: 52vh;
-    overflow-y: auto !important;
 }
 
 .cp-cart-total-row {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .cp-cart-total-price {
@@ -620,7 +617,7 @@ img, video {
 .cp-cart-form {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .cp-form-group {
@@ -629,47 +626,47 @@ img, video {
 
 .cp-form-group input {
     width: 100% !important;
-    padding: 8px 10px !important;
+    padding: 10px !important;
     background: #1d2022 !important;
     border: 1px solid #353a3e !important;
     border-radius: 4px !important;
     color: #ffffff !important;
-    font-size: 0.85rem !important;
+    font-size: 0.9rem !important;
 }
 
 /* Botón de WhatsApp / Transferencia */
 #cp-send-whatsapp-btn {
     width: 100% !important;
-    padding: 10px !important;
+    padding: 12px !important;
     background: #22c55e !important;
     color: #0d0e10 !important;
     border: none !important;
     border-radius: 4px !important;
     font-weight: 800 !important;
-    font-size: 0.82rem !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-}
-
-/* Botón de Mercado Pago */
-.cp-cart-sidebar button[onclick="pagarConMercadoPago()"] {
-    width: 100% !important;
-    padding: 10px !important;
-    background: #009ee3 !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-radius: 4px !important;
-    font-weight: 700 !important;
     font-size: 0.85rem !important;
     cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 6px !important;
-    margin-top: 4px !important;
+    gap: 8px !important;
+}
+
+/* Botón de Mercado Pago */
+.cp-cart-sidebar button[onclick="pagarConMercadoPago()"] {
+    width: 100% !important;
+    padding: 12px !important;
+    background: #009ee3 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin-top: 6px !important;
 }
 
 /* Botón de vaciar carrito */
@@ -677,10 +674,10 @@ img, video {
     background: transparent !important;
     border: none !important;
     color: #8c949e !important;
-    font-size: 0.78rem !important;
+    font-size: 0.8rem !important;
     cursor: pointer !important;
     text-decoration: underline !important;
-    margin-top: 6px !important;
+    margin-top: 10px !important;
     text-align: center !important;
     width: 100% !important;
 }
