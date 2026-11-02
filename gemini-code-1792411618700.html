@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cazador Patagónico | Forjados para la Acción</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Iconografía Táctica y Deportiva -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Rajdhani -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tactical: {
+                            black: '#0d0e10',
+                            dark: '#141619',
+                            card: '#1b1e23',
+                            border: '#2e343d',
+                            accent: '#d4a359', /* Bronce/Oro desgastado */
+                            accentHover: '#b88942',
+                            neon: '#cbf30c', /* Amarillo neón/verde lima de acento */
+                            steel: '#8b949e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        tactical: ['Rajdhani', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0d0e10;
+            color: #e6edf3;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-tactical {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .tactical-grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(13, 14, 16, 0.6) 0%, rgba(13, 14, 16, 0.95) 85%, #0d0e10 100%),
+                        radial-gradient(circle at center, rgba(212, 163, 89, 0.15) 0%, transparent 70%);
+        }
+
+        .metallic-border {
+            border: 1px solid rgba(212, 163, 89, 0.25);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .metallic-border:hover {
+            border-color: rgba(212, 163, 89, 0.6);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 163, 89, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0e10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e343d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4a359;
+        }
+    </style>
+</head>
+<body class="tactical-grid-bg antialiased selection:bg-tactical-accent selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-tactical-dark/95 backdrop-blur-md border-b border-tactical-border/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRAND LOGO -->
+                <a href="#inicio" class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="relative w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-105">
+                        <svg viewBox="0 0 100 120" class="w-full h-full drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                            <path d="M50 5 L90 20 L85 85 L50 115 L15 85 L10 20 Z" fill="#1b1e23" stroke="#d4a359" stroke-width="3"/>
+                            <path d="M50 12 L82 25 L78 80 L50 105 L22 80 L18 25 Z" fill="#141619" stroke="#2e343d" stroke-width="2"/>
+                            <path d="M35 35 L65 75 M45 30 L75 70 M25 40 L55 80" stroke="#d4a359" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                            <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="#e6edf3" font-family="Rajdhani" font-size="34" font-weight="900" letter-spacing="-2">CP</text>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-tactical text-2xl font-black tracking-widest text-white leading-none group-hover:text-tactical-accent transition-colors">
+                            CAZADOR
+                        </span>
+                        <span class="font-tactical text-sm font-bold tracking-widest text-tactical-accent leading-tight">
+                            PATAGÓNICO
+                        </span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAV TABS -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-tactical text-lg uppercase tracking-wider font-semibold">
+                    <a href="#inicio" class="px-4 py-2 rounded-md text-tactical-accent bg-tactical-card/50 border border-tactical-accent/30 transition-all">
+                        Inicio
+                    </a>
+
+                    <!-- PRODUCTOS DROPDOWN -->
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-gray-300 hover:text-white hover:bg-tactical-card transition-all flex items-center space-x-2">
+                            <span>Productos</span>
+                            <i class="fa-solid fa-chevron-down text-xs text-tactical-accent transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        
+                        <div class="absolute left-0 mt-1 w-64 rounded-md bg-tactical-dark border border-tactical-border shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                            <div class="px-3 py-1 text-xs font-bold text-tactical-accent tracking-widest border-b border-tactical-border/50 mb-1">
+                                CATEGORÍAS
+                            </div>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-user-ninja w-6 text-tactical-accent"></i> Táctico Urbano
+                            </a>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-crosshairs w-6 text-tactical-accent"></i> Caza
+                            </a>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-fish w-6 text-tactical-accent"></i> Pesca
+                            </a>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-person-running w-6 text-tactical-accent"></i> Running
+                            </a>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-person-biking w-6 text-tactical-accent"></i> Ciclismo
+                            </a>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-shield-halved w-6 text-tactical-accent"></i> Seguridad
+                            </a>
+                            <a href="#categorias-destacadas" class="flex items-center px-4 py-2.5 text-sm text-gray-300 hover:bg-tactical-card hover:text-tactical-accent transition-colors">
+                                <i class="fa-solid fa-shirt w-6 text-tactical-accent"></i> Uniformes
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="#donde-estamos" class="px-4 py-2 rounded-md text-gray-300 hover:text-white hover:bg-tactical-card transition-all">
+                        Dónde Estamos
+                    </a>
+
+                    <a href="#quienes-somos" class="px-4 py-2 rounded-md text-gray-300 hover:text-white hover:bg-tactical-card transition-all">
+                        Quiénes Somos
+                    </a>
+                </nav>
+
+                <!-- ACTIONS -->
+                <div class="flex items-center space-x-3">
+                    <button class="relative p-2.5 text-gray-300 hover:text-white bg-tactical-card/80 border border-tactical-border rounded-lg transition-colors">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="absolute -top-1.5 -right-1.5 bg-tactical-accent text-black font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION: INICIO -->
+    <main id="inicio" class="section-content">
+        
+        <!-- HERO BANNER -->
+        <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12 lg:py-20">
+            <div class="absolute inset-0 hero-overlay z-10"></div>
+            
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="font-tactical text-4xl sm:text-6xl lg:text-7xl font-black tracking-wider text-white uppercase mb-4 drop-shadow-lg">
+                    CAZADOR PATAGÓNICO
+                </h1>
+                
+                <div class="inline-block bg-tactical-accent/10 border-y-2 border-tactical-accent px-6 py-2 mb-6">
+                    <p class="font-tactical text-xl sm:text-2xl lg:text-3xl font-bold tracking-widest text-tactical-accent uppercase">
+                        FORJADOS PARA LA ACCIÓN
+                    </p>
+                </div>
+
+                <p class="max-w-3xl mx-auto text-gray-300 text-base sm:text-lg lg:text-xl leading-relaxed mb-10 font-normal">
+                    Nacidos en el rigor del viento y la montaña. Tienda online especializada en indumentaria y accesorios para personal 4x4, fuerzas de seguridad, amantes de la caza, pesca y entrenamiento extremo. Todo en indumentaria táctica urbana, calzados, gorras y camisas de alta resistencia.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 font-tactical">
+                    <a href="#categorias-destacadas" class="w-full sm:w-auto px-8 py-4 bg-tactical-accent hover:bg-tactical-accentHover text-black font-black text-xl tracking-wider rounded-lg shadow-xl transition-all flex items-center justify-center space-x-3">
+                        <span>EXPLORAR CATEGORÍAS</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORÍAS DESTACADAS (6 TARJETAS) -->
+        <section id="categorias-destacadas" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-tactical-border/60 pb-4">
+                <div>
+                    <span class="font-tactical text-tactical-accent font-bold tracking-widest text-sm uppercase">CATÁLOGO PRINCIPAL</span>
+                    <h2 class="font-tactical text-3xl sm:text-4xl font-black text-white uppercase tracking-wider">
+                        EQUIPAMIENTO DESTACADO
+                    </h2>
+                </div>
+            </div>
+
+            <!-- GRID DE 6 TARJETAS CATEGORÍA -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Tarjeta 1: Bolsos y Mochilas -->
+                <div class="group relative rounded-xl overflow-hidden bg-tactical-card metallic-border cursor-pointer transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80" alt="Bolsos y Mochilas" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-black/80 border border-tactical-accent/40 text-tactical-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tactical">MOLLE & TÁCTICO</span>
+                    </div>
+                    <div class="p-6 relative z-10 -mt-12">
+                        <h3 class="font-tactical text-2xl font-bold text-white group-hover:text-tactical-accent uppercase">Bolsos & Mochilas</h3>
+                        <p class="text-gray-400 text-sm mt-2">Mochilas tácticas MOLLE, bolsos estancos y riñoneras de transporte pesado.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Calzado -->
+                <div class="group relative rounded-xl overflow-hidden bg-tactical-card metallic-border cursor-pointer transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Calzado" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-black/80 border border-tactical-accent/40 text-tactical-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tactical">TODO TERRENO</span>
+                    </div>
+                    <div class="p-6 relative z-10 -mt-12">
+                        <h3 class="font-tactical text-2xl font-bold text-white group-hover:text-tactical-accent uppercase">Calzado Táctico</h3>
+                        <p class="text-gray-400 text-sm mt-2">Borcegos de combate impermeables y calzado de trekking reforzado.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Camping -->
+                <div class="group relative rounded-xl overflow-hidden bg-tactical-card metallic-border cursor-pointer transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80" alt="Camping" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-black/80 border border-tactical-accent/40 text-tactical-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tactical">OUTDOOR</span>
+                    </div>
+                    <div class="p-6 relative z-10 -mt-12">
+                        <h3 class="font-tactical text-2xl font-bold text-white group-hover:text-tactical-accent uppercase">Camping, Caza & Pesca</h3>
+                        <p class="text-gray-400 text-sm mt-2">Carpas técnicas, navajas, linternas tácticas y accesorios de pesca.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Running -->
+                <div class="group relative rounded-xl overflow-hidden bg-tactical-card metallic-border cursor-pointer transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="Running" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-tactical-neon text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tactical">ALTO RENDIMIENTO</span>
+                    </div>
+                    <div class="p-6 relative z-10 -mt-12">
+                        <h3 class="font-tactical text-2xl font-bold text-white group-hover:text-tactical-accent uppercase">Running & Trail</h3>
+                        <p class="text-gray-400 text-sm mt-2">Indumentaria térmica de compresión y chalecos de hidratación.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Ciclismo -->
+                <div class="group relative rounded-xl overflow-hidden bg-tactical-card metallic-border cursor-pointer transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Ciclismo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-black/80 border border-tactical-accent/40 text-tactical-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tactical">MTB & ENDURO</span>
+                    </div>
+                    <div class="p-6 relative z-10 -mt-12">
+                        <h3 class="font-tactical text-2xl font-bold text-white group-hover:text-tactical-accent uppercase">Ciclismo & MTB</h3>
+                        <p class="text-gray-400 text-sm mt-2">Jerseys respirables, calzas de protección y guantes reforzados.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Táctico Urbano (Con la imagen deportiva de alta montaña integrada) -->
+                <div class="group relative rounded-xl overflow-hidden bg-tactical-card metallic-border cursor-pointer transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Táctico Urbano y Deportista" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 right-4 bg-black/80 border border-tactical-accent/40 text-tactical-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-tactical">ESTILO & ACCIÓN</span>
+                    </div>
+                    <div class="p-6 relative z-10 -mt-12">
+                        <h3 class="font-tactical text-2xl font-bold text-white group-hover:text-tactical-accent uppercase">Táctico Urbano</h3>
+                        <p class="text-gray-400 text-sm mt-2">Indumentaria de diseño táctico urbano, camisas de alta resistencia y gorras.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-tactical-dark border-t border-tactical-border py-12 text-center text-gray-400 text-sm">
+        <p class="font-tactical text-tactical-accent tracking-widest text-base mb-2">CAZADOR PATAGÓNICO © 2026</p>
+        <p>Forjados para la acción en los terrenos más extremos.</p>
+    </footer>
+
+</body>
+</html>

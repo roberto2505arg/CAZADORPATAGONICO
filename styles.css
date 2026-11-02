@@ -109,8 +109,10 @@ img, video {
 }
 
 .cp-nav-logo-img {
-    height: 35px;
-    width: auto;
+    height: 35px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    display: block !important;
 }
 
 .cp-nav-links {
@@ -507,7 +509,7 @@ img, video {
 }
 
 /* ==========================================================
-   MODAL CARRITO (SLIDE-OVER)
+   MODAL CARRITO & AUTH MODAL (SLIDE-OVER)
    ========================================================== */
 .cp-cart-modal {
     position: fixed;
@@ -609,42 +611,67 @@ img, video {
 .cp-cart-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.cp-form-group input {
-    width: 100%;
-    padding: 10px;
-    background: #1d2022;
-    border: 1px solid #353a3e;
-    border-radius: 4px;
-    color: #ffffff;
-}
-
-.cp-cart-checkout-btn {
-    width: 100%;
-    padding: 12px;
-    background: #25d366;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 8px;
 }
 
-.cp-cart-clear-btn {
-    background: transparent;
-    border: none;
-    color: #8c949e;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-decoration: underline;
-    margin-top: 5px;
-    text-align: center;
+.cp-form-group {
+    width: 100%;
+}
+
+.cp-form-group input {
+    width: 100% !important;
+    padding: 10px !important;
+    background: #1d2022 !important;
+    border: 1px solid #353a3e !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+    font-size: 0.9rem !important;
+}
+
+/* Botón de WhatsApp */
+#cp-send-whatsapp-btn {
+    width: 100% !important;
+    padding: 11px !important;
+    background: #25d366 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+/* Botón de Mercado Pago */
+.cp-cart-sidebar button[onclick="pagarConMercadoPago()"] {
+    width: 100% !important;
+    padding: 11px !important;
+    background: #009ee3 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin-top: 5px !important;
+}
+
+/* Botón de vaciar carrito */
+#cp-clear-cart-btn {
+    background: transparent !important;
+    border: none !important;
+    color: #8c949e !important;
+    font-size: 0.8rem !important;
+    cursor: pointer !important;
+    text-decoration: underline !important;
+    margin-top: 8px !important;
+    text-align: center !important;
+    width: 100% !important;
 }
 
 .cp-footer {

@@ -8,6 +8,93 @@
     <!-- FUENTES E ICONOS DE FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- ESTILO PARA EL BANNER Y EL AVATAR FLOTANTE DE VIDEO -->
+    <style>
+        @keyframes cpBlink {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .cp-shipping-banner {
+            background: linear-gradient(135deg, #1b1e23, #2e343d);
+            border: 2px dashed #d4a359;
+            border-radius: 8px;
+            padding: 15px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            animation: cpBlink 2s infinite ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(212, 163, 89, 0.2);
+        }
+        .cp-shipping-banner i {
+            font-size: 1.8rem;
+            color: #d4a359;
+        }
+        .cp-shipping-banner span {
+            font-family: 'Rajdhani', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .cp-shipping-banner strong {
+            color: #d4a359;
+        }
+
+        /* ESTILO DEL WIDGET FLOTANTE DE VIDEO (AVATAR) */
+        .cp-floating-avatar-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #d4a359;
+            background: #0d0e10;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+            opacity: 0.6; /* Transparencia por defecto */
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .cp-floating-avatar-container:hover {
+            opacity: 1; /* 100% opacidad al pasar el mouse */
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(212, 163, 89, 0.4);
+        }
+        .cp-floating-avatar-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Permite hacer clic en el enlace contenedor */
+        }
+        .cp-floating-avatar-tooltip {
+            position: absolute;
+            bottom: 115px;
+            right: 0;
+            background: #1b1e23;
+            color: #d4a359;
+            border: 1px solid #d4a359;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            font-family: 'Rajdhani', Arial, sans-serif;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .cp-floating-avatar-container:hover .cp-floating-avatar-tooltip {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
 
@@ -40,6 +127,11 @@
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-envelope"></i> <span>Contacto</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-brands fa-instagram"></i> <span>Redes</span></a>
                 
+                <!-- BOTÓN DE CUENTA / REGISTRO -->
+                <button id="cp-account-btn" class="cp-nav-item" type="button" aria-label="Mi Cuenta">
+                    <i class="fa-solid fa-user"></i> <span id="cp-account-label">Mi Cuenta</span>
+                </button>
+
                 <!-- BOTÓN DE CARRITO -->
                 <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito">
                     <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
@@ -55,6 +147,13 @@
             
             <!-- PORTADA -->
             <header class="cp-header">
+                
+                <!-- BANNER PARPADEANTE DE ENVIOS Y DESCUENTO -->
+                <div class="cp-shipping-banner">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>ENVÍOS A TODO EL PAÍS A DOMICILIO ($15.000) | <strong style="color: #22c55e;">8% OFF PAGANDO POR TRANSFERENCIA</strong></span>
+                </div>
+
                 <div class="cp-banner-container">
                     <img src="imagen/banner.jfif" alt="Cazador Patagónico - Forjados para la Acción" class="cp-banner-img">
                 </div>
@@ -148,6 +247,89 @@
         </div>
     </div>
 
+    <!-- WIDGET FLOTANTE DE VIDEO / AVATAR CONSULTÁME -->
+    <a href="https://wa.me/5492974802505?text=Hola%20Cazador%20Patagónico,%20tengo%20una%20consulta..." target="_blank" title="¡Consúltanos por WhatsApp!">
+        <div class="cp-floating-avatar-container">
+            <div class="cp-floating-avatar-tooltip">¡CONSÚLTAME!</div>
+            <video class="cp-floating-avatar-video" autoplay muted loop playsinline>
+                <source src="video/ayuda.mp4" type="video/mp4">
+            </video>
+        </div>
+    </a>
+
+    <!-- MODAL DE REGISTRO E INICIO DE SESIÓN -->
+    <div id="cp-auth-modal" class="cp-cart-modal" aria-hidden="true">
+        <div class="cp-cart-overlay" id="cp-auth-close-overlay"></div>
+        <div class="cp-cart-sidebar" style="max-width: 440px;">
+            <div class="cp-cart-header">
+                <h3 id="cp-auth-title"><i class="fa-solid fa-user-shield"></i> ACCESO A LA COMUNIDAD</h3>
+                <button id="cp-auth-close-btn" class="cp-cart-close-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="cp-cart-items" style="padding: 25px;">
+                <div id="cp-auth-forms-container">
+                    <form id="cp-login-form" class="cp-cart-form">
+                        <p style="color: #a0a5ab; font-size: 0.85rem; margin-bottom: 15px;">Iniciá sesión para usar tus datos guardados en las compras.</p>
+                        <div class="cp-form-group">
+                            <input type="email" id="cp-login-email" placeholder="Correo electrónico (Gmail)" required>
+                        </div>
+                        <div class="cp-form-group">
+                            <input type="password" id="cp-login-pass" placeholder="Contraseña" required>
+                        </div>
+                        <button type="submit" class="cp-cart-checkout-btn" style="background: #e5a93b; color: #121415; margin-top: 10px;">
+                            INICIAR SESIÓN
+                        </button>
+                        <button type="button" id="cp-show-register-btn" class="cp-cart-clear-btn" style="margin-top: 15px; display: block; width: 100%;">
+                            ¿No tenés cuenta? <b>Registrate acá y sé parte de la comunidad</b>
+                        </button>
+                    </form>
+
+                    <form id="cp-register-form" class="cp-cart-form" style="display: none;">
+                        <p style="color: #e5a93b; font-size: 0.85rem; margin-bottom: 15px; font-weight: 600;">Registrate para guardar tus datos y participar de sorteos patagónicos.</p>
+                        <div class="cp-form-group">
+                            <input type="text" id="cp-reg-name" placeholder="Nombre y Apellido" required>
+                        </div>
+                        <div class="cp-form-group">
+                            <input type="email" id="cp-reg-email" placeholder="Correo electrónico (Gmail)" required>
+                        </div>
+                        <div class="cp-form-group">
+                            <input type="password" id="cp-reg-pass" placeholder="Contraseña" required>
+                        </div>
+                        <div class="cp-form-group">
+                            <input type="text" id="cp-reg-phone" placeholder="Teléfono / WhatsApp (ej. 2974802505)" required>
+                        </div>
+                        <div class="cp-form-group">
+                            <input type="text" id="cp-reg-address" placeholder="Dirección de Envío (ej. San Martín 450, Zapala)" required>
+                        </div>
+                        <button type="submit" class="cp-cart-checkout-btn" style="background: #e5a93b; color: #121415; margin-top: 10px;">
+                            REGISTRARME EN LA COMUNIDAD
+                        </button>
+                        <button type="button" id="cp-show-login-btn" class="cp-cart-clear-btn" style="margin-top: 15px; display: block; width: 100%;">
+                            ¿Ya tenés cuenta? Iniciar Sesión
+                        </button>
+                    </form>
+                </div>
+
+                <div id="cp-user-profile-view" style="display: none; text-align: center; color: #e2e6ea;">
+                    <div style="font-size: 3rem; color: #e5a93b; margin-bottom: 10px;">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <h4 id="cp-profile-name" style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;"></h4>
+                    <p id="cp-profile-email" style="color: #a0a5ab; font-size: 0.9rem; margin-bottom: 20px;"></p>
+                    
+                    <div style="background: #141617; padding: 15px; border-radius: 6px; text-align: left; margin-bottom: 20px; border: 1px solid #2e3235;">
+                        <p style="font-size: 0.85rem; color: #e5a93b; margin-bottom: 5px; font-weight: bold;"><i class="fa-solid fa-location-dot"></i> Dirección de Envío Guardada:</p>
+                        <p id="cp-profile-address" style="font-size: 0.9rem; color: #fff; margin: 0;"></p>
+                    </div>
+
+                    <button id="cp-logout-btn" class="cp-cart-clear-btn" style="color: #d9534f; font-size: 0.95rem; font-weight: bold; width: 100%; padding: 10px; background: #212426; border-radius: 4px; text-decoration: none;">
+                        CERRAR SESIÓN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL / VENTANA LATERAL DEL CARRITO -->
     <div id="cp-cart-modal" class="cp-cart-modal" aria-hidden="true">
         <div class="cp-cart-overlay" id="cp-cart-close-overlay"></div>
@@ -163,7 +345,7 @@
 
             <div class="cp-cart-footer">
                 <div class="cp-cart-total-row">
-                    <span>Total:</span>
+                    <span>Total a Abonar:</span>
                     <span id="cp-cart-total-price" class="cp-cart-total-price">$0 ARS</span>
                 </div>
 
@@ -175,13 +357,66 @@
                         <input type="text" id="cp-client-city" placeholder="Ciudad (ej. Zapala, NQN)" required>
                     </div>
 
-                    <button id="cp-send-whatsapp-btn" type="button" class="cp-cart-checkout-btn">
-                        <i class="fa-brands fa-whatsapp"></i> ENVIAR PEDIDO POR WHATSAPP
+                    <button id="cp-send-whatsapp-btn" type="button" class="cp-cart-checkout-btn" style="background: #22c55e; color: #0d0e10; font-weight: 800;">
+                        <i class="fa-solid fa-wallet"></i> HAGA CLIC PARA VER DATOS DE TRANSFERENCIA (8% OFF)
                     </button>
+
+                    <div id="cp-transfer-box" style="display: none; background: #121415; border: 1px solid #22c55e; border-radius: 6px; padding: 12px; margin-top: 8px; text-align: left; font-size: 0.85rem; color: #e2e6ea;">
+                        <p style="color: #22c55e; font-weight: bold; margin-bottom: 6px;"><i class="fa-solid fa-circle-check"></i> Datos para tu transferencia:</p>
+                        <p style="margin-bottom: 3px;"><b>Alias:</b> <span style="color:#d4a359; user-select: all;">CAZADORP2.O</span></p>
+                        <p style="margin-bottom: 3px;"><b>CBU:</b> <span style="color:#d4a359; user-select: all;">0000003100029373105455</span></p>
+                        <p style="margin-bottom: 3px;"><b>Cuenta:</b> Mercado Pago</p>
+                        <p style="margin-bottom: 8px;"><b>Titular:</b> Roberto Alfredo Gutiérrez</p>
+                        <hr style="border:0; border-top:1px solid #2e343d; margin: 8px 0;">
+                        <p style="color: #94a3b8; font-size: 0.78rem; margin-bottom: 8px;">Una vez abonado, envíe su comprobante junto al pedido haciendo clic abajo:</p>
+                        <a id="cp-whatsapp-link-final" href="#" target="_blank" style="display: block; background: #25d366; color: #fff; text-align: center; padding: 8px; border-radius: 4px; text-decoration: none; font-weight: bold;">
+                            <i class="fa-brands fa-whatsapp"></i> ENVIAR COMPROBANTE POR WHATSAPP
+                        </a>
+                    </div>
+                    
+                    <button onclick="pagarConMercadoPago()" type="button" class="cp-cart-checkout-btn" style="background: #009ee3; margin-top: 8px;">
+                        <i class="fa-solid fa-credit-card"></i> PAGAR CON MERCADO PAGO (SEGURO)
+                    </button>
+
                     <button id="cp-clear-cart-btn" type="button" class="cp-cart-clear-btn">
                         Vaciar Carrito
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE REDIRECCIÓN SEGURA A MERCADO PAGO -->
+    <div id="cp-mp-redirect-modal" class="cp-cart-modal" aria-hidden="true" style="display: none;">
+        <div class="cp-cart-overlay" onclick="cerrarModalMP()"></div>
+        <div class="cp-cart-sidebar" style="max-width: 450px; margin: auto; height: auto; border-radius: 10px; padding: 25px; text-align: center; background: #181a1b; border: 1px solid #009ee3;">
+            <div style="font-size: 3rem; color: #009ee3; margin-bottom: 10px;">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 10px;">ESTÁS SIENDO REDIRECCIONADO</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
+                Te estamos dirigiendo a la plataforma de pagos segura de <b>Mercado Pago</b>. Para tu comodidad, ya copiamos el importe exacto.
+            </p>
+
+            <div style="background: #121415; border: 1px dashed #009ee3; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                <span style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 5px;">IMPORTE TOTAL A INGRESAR:</span>
+                <span id="cp-mp-modal-amount" style="font-size: 1.8rem; font-weight: bold; color: #009ee3;">$0 ARS</span>
+                <div id="cp-mp-copy-status" style="font-size: 0.75rem; color: #22c55e; margin-top: 5px; font-weight: bold;">
+                    <i class="fa-solid fa-check"></i> ¡Monto copiado al portapapeles con éxito!
+                </div>
+            </div>
+
+            <p style="color: #cbd5e1; font-size: 0.82rem; margin-bottom: 20px;">
+                💡 <i>En Mercado Pago solo debes pegar (Ctrl + V) este importe para abonar con total seguridad.</i>
+            </p>
+
+            <div style="display: flex; gap: 10px;">
+                <button onclick="continuarAMercadoPago()" class="cp-cart-checkout-btn" style="background: #009ee3; flex: 1; padding: 12px; font-weight: bold;">
+                    IR A MERCADO PAGO AHORA <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button onclick="cerrarModalMP()" style="background: #25282a; color: #fff; border: 1px solid #3c4247; padding: 12px 15px; border-radius: 4px; cursor: pointer;">
+                    Cancelar
+                </button>
             </div>
         </div>
     </div>
@@ -196,21 +431,19 @@
             
             <div class="cp-footer-social">
                 <a href="construccion.html" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61595776509857" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://wa.me/5492974802505" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-				
-    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-</a>
+                <a href="https://www.facebook.com/profile.php?id=61595776509857" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://wa.me/5492974802505" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
 
             <div class="cp-footer-copy">
-                <p>&copy; 2026 Cazador Patagónico. Todos los derechos reservados. | Forjados para la Acción.</p>
+                <p>&copy; 2026 Cazador Patagónico. Todos los reservados. | Forjados para la Acción.</p>
             </div>
         </div>
     </footer>
 
     <!-- SCRIPTS -->
     <script src="main.js"></script>
+    <script src="auth.js"></script>
     <script src="cart.js"></script>
 </body>
 </html>
