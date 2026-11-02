@@ -63,7 +63,7 @@
 </head>
 <body class="cp-page-body">
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR HORIZONTAL -->
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR CON MENÚ MÓVIL HAMBURGUESA -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
             <a href="index.html" class="cp-nav-logo">
@@ -71,18 +71,21 @@
                 <span>CAZADOR PATAGÓNICO</span>
             </a>
             
-            <div class="cp-nav-links">
+            <!-- BOTÓN HAMBURGUESA -->
+            <button class="cp-mobile-menu-btn" id="cp-menu-toggle" type="button" aria-label="Abrir Menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            
+            <div class="cp-nav-links" id="cp-nav-links-menu">
                 <a href="index.html" class="cp-nav-item"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
                 <a href="mochilas.html" class="cp-nav-item active"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-envelope"></i> <span>Contacto</span></a>
                 
-                <!-- BOTÓN DE CUENTA / REGISTRO -->
                 <button id="cp-account-btn" class="cp-nav-item" type="button" aria-label="Mi Cuenta">
                     <i class="fa-solid fa-user"></i> <span id="cp-account-label">Mi Cuenta</span>
                 </button>
 
-                <!-- BOTÓN DE CARRITO -->
                 <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito">
                     <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
                     <span id="cp-cart-count" class="cp-cart-count">0</span>
@@ -90,6 +93,28 @@
             </div>
         </div>
     </nav>
+
+    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("cp-menu-toggle");
+            const navLinksMenu = document.getElementById("cp-nav-links-menu");
+
+            if (menuToggle && navLinksMenu) {
+                menuToggle.addEventListener("click", () => {
+                    navLinksMenu.classList.toggle("active");
+                    const icon = menuToggle.querySelector("i");
+                    if (navLinksMenu.classList.contains("active")) {
+                        icon.classList.remove("fa-bars");
+                        icon.classList.add("fa-xmark");
+                    } else {
+                        icon.classList.remove("fa-xmark");
+                        icon.classList.add("fa-bars");
+                    }
+                });
+            }
+        });
+    </script>
 
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="cp-wrapper">
@@ -360,79 +385,6 @@
         </div>
     </a>
 
-    <!-- MODAL DE REGISTRO E INICIO DE SESIÓN -->
-    <div id="cp-auth-modal" class="cp-cart-modal" aria-hidden="true">
-        <div class="cp-cart-overlay" id="cp-auth-close-overlay"></div>
-        <div class="cp-cart-sidebar" style="max-width: 440px;">
-            <div class="cp-cart-header">
-                <h3 id="cp-auth-title"><i class="fa-solid fa-user-shield"></i> ACCESO A LA COMUNIDAD</h3>
-                <button id="cp-auth-close-btn" class="cp-cart-close-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div class="cp-cart-items" style="padding: 25px;">
-                <div id="cp-auth-forms-container">
-                    <form id="cp-login-form" class="cp-cart-form">
-                        <p style="color: #a0a5ab; font-size: 0.85rem; margin-bottom: 15px;">Iniciá sesión para usar tus datos guardados en las compras.</p>
-                        <div class="cp-form-group">
-                            <input type="email" id="cp-login-email" placeholder="Correo electrónico (Gmail)" required>
-                        </div>
-                        <div class="cp-form-group">
-                            <input type="password" id="cp-login-pass" placeholder="Contraseña" required>
-                        </div>
-                        <button type="submit" class="cp-cart-checkout-btn" style="background: #e5a93b; color: #121415; margin-top: 10px;">
-                            INICIAR SESIÓN
-                        </button>
-                        <button type="button" id="cp-show-register-btn" class="cp-cart-clear-btn" style="margin-top: 15px; display: block; width: 100%;">
-                            ¿No tenés cuenta? <b>Registrate acá y sé parte de la comunidad</b>
-                        </button>
-                    </form>
-
-                    <form id="cp-register-form" class="cp-cart-form" style="display: none;">
-                        <p style="color: #e5a93b; font-size: 0.85rem; margin-bottom: 15px; font-weight: 600;">Registrate para guardar tus datos y participar de sorteos patagónicos.</p>
-                        <div class="cp-form-group">
-                            <input type="text" id="cp-reg-name" placeholder="Nombre y Apellido" required>
-                        </div>
-                        <div class="cp-form-group">
-                            <input type="email" id="cp-reg-email" placeholder="Correo electrónico (Gmail)" required>
-                        </div>
-                        <div class="cp-form-group">
-                            <input type="password" id="cp-reg-pass" placeholder="Contraseña" required>
-                        </div>
-                        <div class="cp-form-group">
-                            <input type="text" id="cp-reg-phone" placeholder="Teléfono / WhatsApp (ej. 2974802505)" required>
-                        </div>
-                        <div class="cp-form-group">
-                            <input type="text" id="cp-reg-address" placeholder="Dirección de Envío (ej. San Martín 450, Zapala)" required>
-                        </div>
-                        <button type="submit" class="cp-cart-checkout-btn" style="background: #e5a93b; color: #121415; margin-top: 10px;">
-                            REGISTRARME EN LA COMUNIDAD
-                        </button>
-                        <button type="button" id="cp-show-login-btn" class="cp-cart-clear-btn" style="margin-top: 15px; display: block; width: 100%;">
-                            ¿Ya tenés cuenta? Iniciar Sesión
-                        </button>
-                    </form>
-                </div>
-
-                <div id="cp-user-profile-view" style="display: none; text-align: center; color: #e2e6ea;">
-                    <div style="font-size: 3rem; color: #e5a93b; margin-bottom: 10px;">
-                        <i class="fa-solid fa-user-astronaut"></i>
-                    </div>
-                    <h4 id="cp-profile-name" style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;"></h4>
-                    <p id="cp-profile-email" style="color: #a0a5ab; font-size: 0.9rem; margin-bottom: 20px;"></p>
-                    
-                    <div style="background: #141617; padding: 15px; border-radius: 6px; text-align: left; margin-bottom: 20px; border: 1px solid #2e3235;">
-                        <p style="font-size: 0.85rem; color: #e5a93b; margin-bottom: 5px; font-weight: bold;"><i class="fa-solid fa-location-dot"></i> Dirección de Envío Guardada:</p>
-                        <p id="cp-profile-address" style="font-size: 0.9rem; color: #fff; margin: 0;"></p>
-                    </div>
-
-                    <button id="cp-logout-btn" class="cp-cart-clear-btn" style="color: #d9534f; font-size: 0.95rem; font-weight: bold; width: 100%; padding: 10px; background: #212426; border-radius: 4px; text-decoration: none;">
-                        CERRAR SESIÓN
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- MODAL LIGHTBOX GENERAL (PANTALLA COMPLETA) -->
     <div id="cp-lightbox-modal" class="cp-lightbox-modal">
         <div class="cp-lightbox-overlay" onclick="cerrarLightboxes()"></div>
@@ -458,7 +410,6 @@
                 <button id="cp-cart-close-btn" class="cp-cart-close-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
-            <!-- CONTENEDOR UNIFICADO DE ITEMS Y FOOTER PARA UN SCROLL FLUIDO -->
             <div id="cp-cart-items" class="cp-cart-items"></div>
             
             <div class="cp-cart-footer">

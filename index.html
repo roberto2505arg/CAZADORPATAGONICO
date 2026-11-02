@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR HORIZONTAL -->
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR CON MENÚ MÓVIL HAMBURGUESA -->
     <nav class="cp-navbar">
         <div class="cp-nav-container">
             <a href="index.html" class="cp-nav-logo">
@@ -120,19 +120,21 @@
                 <span>CAZADOR PATAGÓNICO</span>
             </a>
             
-            <div class="cp-nav-links">
+            <!-- BOTÓN HAMBURGUESA -->
+            <button class="cp-mobile-menu-btn" id="cp-menu-toggle" type="button" aria-label="Abrir Menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            
+            <div class="cp-nav-links" id="cp-nav-links-menu">
+                <a href="index.html" class="cp-nav-item"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
                 <a href="mochilas.html" class="cp-nav-item"><i class="fa-solid fa-boxes-stacked"></i> <span>Productos</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a>
-                <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-location-dot"></i> <span>Ubicación</span></a>
                 <a href="construccion.html" class="cp-nav-item"><i class="fa-solid fa-envelope"></i> <span>Contacto</span></a>
-                <a href="construccion.html" class="cp-nav-item"><i class="fa-brands fa-instagram"></i> <span>Redes</span></a>
                 
-                <!-- BOTÓN DE CUENTA / REGISTRO -->
                 <button id="cp-account-btn" class="cp-nav-item" type="button" aria-label="Mi Cuenta">
                     <i class="fa-solid fa-user"></i> <span id="cp-account-label">Mi Cuenta</span>
                 </button>
 
-                <!-- BOTÓN DE CARRITO -->
                 <button id="cp-cart-btn" class="cp-nav-item cp-nav-cart" type="button" aria-label="Ver Carrito">
                     <i class="fa-solid fa-cart-shopping"></i> <span>Carrito</span>
                     <span id="cp-cart-count" class="cp-cart-count">0</span>
@@ -140,6 +142,28 @@
             </div>
         </div>
     </nav>
+
+    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("cp-menu-toggle");
+            const navLinksMenu = document.getElementById("cp-nav-links-menu");
+
+            if (menuToggle && navLinksMenu) {
+                menuToggle.addEventListener("click", () => {
+                    navLinksMenu.classList.toggle("active");
+                    const icon = menuToggle.querySelector("i");
+                    if (navLinksMenu.classList.contains("active")) {
+                        icon.classList.remove("fa-bars");
+                        icon.classList.add("fa-xmark");
+                    } else {
+                        icon.classList.remove("fa-xmark");
+                        icon.classList.add("fa-bars");
+                    }
+                });
+            }
+        });
+    </script>
 
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="cp-wrapper">
@@ -341,7 +365,6 @@
                 </button>
             </div>
 
-            <!-- CONTENEDOR UNIFICADO DE ITEMS Y FOOTER PARA UN SCROLL FLUIDO -->
             <div id="cp-cart-items" class="cp-cart-items"></div>
 
             <div class="cp-cart-footer">
@@ -383,41 +406,6 @@
                         Vaciar Carrito
                     </button>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE REDIRECCIÓN SEGURA A MERCADO PAGO -->
-    <div id="cp-mp-redirect-modal" class="cp-cart-modal" aria-hidden="true" style="display: none;">
-        <div class="cp-cart-overlay" onclick="cerrarModalMP()"></div>
-        <div class="cp-cart-sidebar" style="max-width: 450px; margin: auto; height: auto; border-radius: 10px; padding: 25px; text-align: center; background: #181a1b; border: 1px solid #009ee3;">
-            <div style="font-size: 3rem; color: #009ee3; margin-bottom: 10px;">
-                <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3 style="color: #fff; font-size: 1.3rem; margin-bottom: 10px;">ESTÁS SIENDO REDIRECCIONADO</h3>
-            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
-                Te estamos dirigiendo a la plataforma de pagos segura de <b>Mercado Pago</b>. Para tu comodidad, ya copiamos el importe exacto.
-            </p>
-
-            <div style="background: #121415; border: 1px dashed #009ee3; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
-                <span style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 5px;">IMPORTE TOTAL A INGRESAR:</span>
-                <span id="cp-mp-modal-amount" style="font-size: 1.8rem; font-weight: bold; color: #009ee3;">$0 ARS</span>
-                <div id="cp-mp-copy-status" style="font-size: 0.75rem; color: #22c55e; margin-top: 5px; font-weight: bold;">
-                    <i class="fa-solid fa-check"></i> ¡Monto copiado al portapapeles con éxito!
-                </div>
-            </div>
-
-            <p style="color: #cbd5e1; font-size: 0.82rem; margin-bottom: 20px;">
-                💡 <i>En Mercado Pago solo debes pegar (Ctrl + V) este importe para abonar con total seguridad.</i>
-            </p>
-
-            <div style="display: flex; gap: 10px;">
-                <button onclick="continuarAMercadoPago()" class="cp-cart-checkout-btn" style="background: #009ee3; flex: 1; padding: 12px; font-weight: bold;">
-                    IR A MERCADO PAGO AHORA <i class="fa-solid fa-arrow-right"></i>
-                </button>
-                <button onclick="cerrarModalMP()" style="background: #25282a; color: #fff; border: 1px solid #3c4247; padding: 12px 15px; border-radius: 4px; cursor: pointer;">
-                    Cancelar
-                </button>
             </div>
         </div>
     </div>
