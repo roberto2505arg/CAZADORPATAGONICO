@@ -773,3 +773,61 @@ img, video {
     color: #ffffff;
     margin-bottom: 5px;
 }
+/* ==========================================================
+   EFECTO DE PARPADEO / ZUMBIDO Y TOOLTIP DE BASES Y CONDICIONES
+   ========================================================== */
+@keyframes cpPulseGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(229, 169, 59, 0.3);
+        border-color: #2e3235;
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(229, 169, 59, 0.8), inset 0 0 10px rgba(229, 169, 59, 0.4);
+        border-color: #e5a93b;
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(229, 169, 59, 0.3);
+        border-color: #2e3235;
+        transform: scale(1);
+    }
+}
+
+.cp-card-gift-promo {
+    animation: cpPulseGlow 2.5s infinite ease-in-out !important;
+    position: relative !important;
+}
+
+/* Contenedor del tooltip para "Bases y Condiciones" al acercar el cursor */
+.cp-gift-tooltip-container {
+    position: relative;
+    display: block;
+}
+
+.cp-gift-tooltip-container::after {
+    content: "Bases y Condiciones";
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #181a1b;
+    color: #e5a93b;
+    border: 1px solid #e5a93b;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+
+.cp-gift-tooltip-container:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
