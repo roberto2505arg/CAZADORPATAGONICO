@@ -5,6 +5,7 @@
 const CP_WHATSAPP_PHONE = "5492974802505";
 const CART_STORAGE_KEY = "cp_patagonico_cart_v1";
 const TARIFAPLANA_ENVIO = 15000;
+const LIMITE_ENVIO_GRATIS = 100000; // Monto mínimo para envío gratis
 const DESCUENTO_TRANSFERENCIA = 0.08;
 
 let cartItems = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
@@ -14,6 +15,7 @@ const cartModal = document.getElementById("cp-cart-modal");
 const cartCloseBtn = document.getElementById("cp-cart-close-btn");
 const cartCloseOverlay = document.getElementById("cp-cart-close-overlay");
 const cartCountElem = document.getElementById("cp-cart-count");
+const desktopCartCountElem = document.getElementById("cp-cart-count-desktop");
 const cartItemsContainer = document.getElementById("cp-cart-items");
 const cartTotalPriceElem = document.getElementById("cp-cart-total-price");
 const sendWhatsappBtn = document.getElementById("cp-send-whatsapp-btn");
@@ -25,12 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initEventListeners() {
-    if (cartBtn) {
-        cartBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            openCartModal();
-        });
-    }
+    // Sincronizar apertura de carrito tanto en móvil como en escritorio
+    const openCartTriggers = document.querySelectorAll(".cp-cart-cart, #cp-cart-btn, #cp-cart-btn-desktop");
+    openCartTriggers.forEach(btn => {
+        if (btn) {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                openCartModal();
+            });
+        }
+    });
 
     if (cartCloseBtn) cartCloseBtn.addEventListener("click", closeCartModal);
     if (cartCloseOverlay) cartCloseOverlay.addEventListener("click", closeCartModal);
@@ -185,12 +191,15 @@ function closeCartModal() {
 
 function updateCartUI() {
     const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    if (cartCountElem) {
-        cartCountElem.textContent = totalCount;
-    }
+    if (cartCountElem) cartCountElem.textContent = totalCount;
+    if (desktopCartCountElem) desktopCartCountElem.textContent = totalCount;
 
     const productsTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    const shippingCost = cartItems.length > 0 ? TARIFAPLANA_ENVIO : 0;
+    
+    // Validar si aplica el envío gratis (compras superiores o iguales a $100.000)
+    const tieneEnvioGratis = productsTotal >= LIMITE_ENVIO_GRATIS;
+    const shippingCost = cartItems.length > 0 ? (tieneEnvioGratis ? 0 : TARIFAPLANA_ENVIO) : 0;
+    
     const totalMoney = productsTotal + shippingCost;
     const descuentoMonto = productsTotal * DESCUENTO_TRANSFERENCIA;
     const totalConDescuento = (productsTotal - descuentoMonto) + shippingCost;
@@ -233,17 +242,32 @@ function updateCartUI() {
         </div>
     `).join("");
 
-    itemsHtml += `
-        <div class="cp-cart-shipping-info" style="display: flex; gap: 12px; align-items: center; background: #1b1e23; padding: 10px; border-radius: 6px; border: 1px dashed #d4a359;">
-            <div style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(212,163,89,0.1); border-radius: 4px; color: #d4a359; font-size: 1.2rem;">
-                <i class="fa-solid fa-truck-fast"></i>
+    if (tieneEnvioGratis) {
+        itemsHtml += `
+            <div class="cp-cart-shipping-info" style="display: flex; gap: 12px; align-items: center; background: rgba(34,197,94,0.1); padding: 10px; border-radius: 6px; border: 1px dashed #22c55e;">
+                <div style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(34,197,94,0.2); border-radius: 4px; color: #22c55e; font-size: 1.2rem;">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div style="flex: 1;">
+                    <h4 style="font-size: 0.9rem; color: #fff; margin-bottom: 2px;">¡Envío a Domicilio Bonificado!</h4>
+                    <div style="font-size: 0.85rem; color: #22c55e; font-weight: bold;">¡GRATIS por superar los $100.000!</div>
+                </div>
             </div>
-            <div style="flex: 1;">
-                <h4 style="font-size: 0.9rem; color: #fff; margin-bottom: 2px;">Envío a Domicilio (Tarifa Plana)</h4>
-                <div style="font-size: 0.85rem; color: #d4a359; font-weight: bold;">$${TARIFAPLANA_ENVIO.toLocaleString('es-AR')} ARS</div>
+        `;
+    } else {
+        const faltaParaEnvio = LIMITE_ENVIO_GRATIS - productsTotal;
+        itemsHtml += `
+            <div class="cp-cart-shipping-info" style="display: flex; gap: 12px; align-items: center; background: #1b1e23; padding: 10px; border-radius: 6px; border: 1px dashed #d4a359;">
+                <div style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(212,163,89,0.1); border-radius: 4px; color: #d4a359; font-size: 1.2rem;">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div style="flex: 1;">
+                    <h4 style="font-size: 0.9rem; color: #fff; margin-bottom: 2px;">Envío a Domicilio - $15.000</h4>
+                    <div style="font-size: 0.78rem; color: #94a3b8;">Agregá $${faltaParaEnvio.toLocaleString('es-AR')} más para obtener <b>ENVÍO GRATIS</b></div>
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }
 
     cartItemsContainer.innerHTML = itemsHtml;
 }
@@ -266,8 +290,10 @@ function sendOrderToWhatsApp() {
     }
 
     const productsTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const tieneEnvioGratis = productsTotal >= LIMITE_ENVIO_GRATIS;
+    const shippingCost = tieneEnvioGratis ? 0 : TARIFAPLANA_ENVIO;
     const descuentoMonto = productsTotal * DESCUENTO_TRANSFERENCIA;
-    const totalTransferencia = (productsTotal - descuentoMonto) + TARIFAPLANA_ENVIO;
+    const totalTransferencia = (productsTotal - descuentoMonto) + shippingCost;
 
     const orderNumber = Math.floor(1000 + Math.random() * 9000);
     let message = `*¡Hola Cazador Patagónico! Realicé una transferencia bancaria (8% OFF):*\n\n`;
@@ -281,7 +307,12 @@ function sendOrderToWhatsApp() {
         message += `• ${item.quantity}x ${item.title} - $${subtotal.toLocaleString('es-AR')} ARS\n`;
     });
 
-    message += `• Envío a Domicilio (Tarifa Plana) - $${TARIFAPLANA_ENVIO.toLocaleString('es-AR')} ARS\n`;
+    if (tieneEnvioGratis) {
+        message += `• Envío a Domicilio - ¡GRATIS!\n`;
+    } else {
+        message += `• Envío a Domicilio - $${TARIFAPLANA_ENVIO.toLocaleString('es-AR')} ARS\n`;
+    }
+    
     message += `🎁 *Descuento 8% Transferencia:* -$${descuentoMonto.toLocaleString('es-AR')} ARS\n`;
     message += `\n💰 *Total Abonado:* $${totalTransferencia.toLocaleString('es-AR')} ARS\n\n`;
     message += `*Adjunto mi comprobante de pago.*`;
@@ -300,7 +331,6 @@ function sendOrderToWhatsApp() {
     }
 }
 
-// SOLUCIÓN DEFINITIVA PARA CELULARES: Abre directo como enlace en pestaña nueva sin bloqueos
 function pagarConMercadoPago() {
     if (cartItems.length === 0) {
         alert("El carrito está vacío.");
@@ -319,7 +349,9 @@ function pagarConMercadoPago() {
     }
 
     const productsTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-    const totalMoney = productsTotal + TARIFAPLANA_ENVIO;
+    const tieneEnvioGratis = productsTotal >= LIMITE_ENVIO_GRATIS;
+    const shippingCost = tieneEnvioGratis ? 0 : TARIFAPLANA_ENVIO;
+    const totalMoney = productsTotal + shippingCost;
 
     navigator.clipboard.writeText(totalMoney.toString()).catch(() => {});
     closeCartModal();
